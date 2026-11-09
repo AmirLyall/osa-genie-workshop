@@ -1,34 +1,27 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # NC OSA Genie Workshop: setup
+# MAGIC # NC OSA Genie Workshop: load the tables
 # MAGIC
-# MAGIC Run this notebook **once** before the workshop. It builds a synthetic purchasing card (P-card) dataset and a Genie Agent
-# MAGIC called **OSA P-Card Review (Workshop)** that the business users follow along with.
+# MAGIC Run this notebook **once** before the workshop. It loads a synthetic purchasing card (P-card) dataset that attendees use to
+# MAGIC **create their own Genie Agents** during the session. It does not create any agents.
 # MAGIC
 # MAGIC **What it creates**
 # MAGIC - Schema `<catalog>.osa_pcard_review` with 6 tables, each with table and column descriptions
-# MAGIC - The Genie Agent, with instructions, a few example queries and suggested questions
-# MAGIC - Optional: read access on the schema and CAN RUN on the agent for a group you name
 # MAGIC
-# MAGIC **How to run:** fill in `catalog` (a catalog where you can create a schema), leave `warehouse_id` blank to auto-pick a SQL warehouse,
-# MAGIC optionally set `share_with_group` to the business users' group, then **Run all**. It takes a few minutes on serverless.
-# MAGIC Re-running is safe: same seed, same numbers, and the agent is updated in place.
+# MAGIC **How to run:** fill in `catalog` (a catalog where you can create a schema), or set `DEFAULT_CATALOG` in the next cell, then **Run all**.
+# MAGIC It takes a few minutes on serverless. Afterward, give the attendees access to the schema and a SQL warehouse (see the setup page).
+# MAGIC Re-running is safe: same seed, same numbers, and it only overwrites tables it created itself.
 # MAGIC
-# MAGIC All data is synthetic and for training only. No figure is real, and nothing here is an OSA finding.
+# MAGIC All data is synthetic and for training only. Agencies, people and merchants are fictional, and nothing here is an OSA finding.
 
 # COMMAND ----------
 
-dbutils.widgets.text("catalog", "", "Catalog (required)")
+DEFAULT_CATALOG = ""  # used when the catalog widget is left blank
+dbutils.widgets.text("catalog", DEFAULT_CATALOG, "Catalog")
 dbutils.widgets.text("schema", "osa_pcard_review", "Schema")
-dbutils.widgets.text("warehouse_id", "", "SQL warehouse ID (blank = auto)")
-dbutils.widgets.text("share_with_group", "", "Group to share with (optional)")
-dbutils.widgets.text("agent_title", "OSA P-Card Review (Workshop)", "Genie Agent title")
 
-CATALOG = dbutils.widgets.get("catalog").strip()
+CATALOG = dbutils.widgets.get("catalog").strip() or DEFAULT_CATALOG
 SCHEMA = dbutils.widgets.get("schema").strip() or "osa_pcard_review"
-WAREHOUSE_ID = dbutils.widgets.get("warehouse_id").strip()
-SHARE_GROUP = dbutils.widgets.get("share_with_group").strip()
-AGENT_TITLE = dbutils.widgets.get("agent_title").strip() or "OSA P-Card Review (Workshop)"
 
 if not CATALOG:
     raise ValueError("Set the 'catalog' widget to a catalog where you can create a schema, then Run all again.")
@@ -355,170 +348,3 @@ write("monthly_statements", statements,
        "reconciled_date": "Date the statement was reconciled. Null if not yet reconciled.",
        "days_to_reconcile": "Days from statement date to reconciliation. Policy expects 30 days or fewer. Null if not reconciled.",
        "approver_name": "Supervisor who approves the statement."})
-
-# COMMAND ----------
-
-# MAGIC %md ## 3. Create or update the Genie Agent
-
-# COMMAND ----------
-
-import json, uuid
-from databricks.sdk import WorkspaceClient
-
-w = WorkspaceClient()
-api = w.api_client
-
-if not WAREHOUSE_ID:
-    whs = list(w.warehouses.list())
-    whs.sort(key=lambda x: (str(x.state) != "State.RUNNING", not bool(x.enable_serverless_compute)))
-    if not whs:
-        raise ValueError("No SQL warehouse found. Set the warehouse_id widget.")
-    WAREHOUSE_ID = whs[0].id
-print(f"Warehouse: {WAREHOUSE_ID}")
-
-def lines(text):
-    parts = text.strip("\n").split("\n")
-    return [p + "\n" for p in parts[:-1]] + [parts[-1]]
-
-def tid(name):  # stable ids so re-runs update in place
-    return uuid.uuid5(uuid.NAMESPACE_URL, f"osa-genie-workshop/{name}").hex
-
-t = lambda name: f"{CATALOG}.{SCHEMA}.{name}"
-q = lambda name: f"`{CATALOG}`.`{SCHEMA}`.`{name}`"
-
-INSTRUCTIONS = f"""
-This agent covers synthetic North Carolina state purchasing card (P-card) activity for FY2025 and FY2026. It is used to train auditors at the NC Office of the State Auditor. All data is synthetic.
-
-Definitions:
-- Fiscal year (FY) is the NC fiscal year, July 1 to June 30, named for the year it ends. FY2026 = July 1, 2025 to June 30, 2026. Use the fiscal_year columns.
-- The data is as of June 30, 2026. "Today", "current" and "last N days" are relative to 2026-06-30, not the real current date.
-- Split purchase: two or more transactions on the same card, at the same merchant, on the same day, where each is at or under the card's single_purchase_limit but the combined total is over it.
-- Purchase after termination: a transaction on a card where cardholders.termination_date is not null and transactions.transaction_date > termination_date.
-- Blocked merchant category: merchant_categories.is_blocked = TRUE.
-- Off-hours: a transaction on a Saturday or Sunday, or with a time from 10 PM to before 5 AM (hour of transaction_ts >= 22 or < 5).
-- Missing receipt: transactions.receipt_attached = FALSE. Receipt rate or missing-receipt rate is a share of transactions.
-- Late reconciliation: monthly_statements.days_to_reconcile > 30. Unreconciled: reconciled = FALSE. Age of an unreconciled statement = days from statement_date to 2026-06-30.
-- Inactive or dormant card: card_status = 'Active' with no transactions in the 90 days ending 2026-06-30.
-- Red flags for a cardholder: count of split purchase groups, purchases after termination, blocked category purchases, off-hours purchases and missing receipts.
-
-Rules:
-- Show agency_name with agency_code when grouping by agency.
-- Show dollar amounts rounded to cents and percentages to one decimal place.
-- When listing transactions, include transaction_date, cardholder_name, agency_code, merchant_name and amount.
-"""
-
-EXAMPLES = [
-    ("Find possible split purchases: same cardholder, same merchant, same day, where the combined total is over the card's single-purchase limit.", f"""
-SELECT c.card_id, c.cardholder_name, c.agency_code, t.merchant_name, t.transaction_date,
-       COUNT(*) AS purchases, ROUND(SUM(t.amount), 2) AS combined_total, c.single_purchase_limit
-FROM {q('transactions')} t
-JOIN {q('cardholders')} c ON t.card_id = c.card_id
-GROUP BY c.card_id, c.cardholder_name, c.agency_code, t.merchant_name, t.transaction_date, c.single_purchase_limit
-HAVING COUNT(*) >= 2 AND MAX(t.amount) <= c.single_purchase_limit AND SUM(t.amount) > c.single_purchase_limit
-ORDER BY combined_total DESC"""),
-    ("Which transactions were made on a card after the cardholder's termination date?", f"""
-SELECT t.transaction_id, t.transaction_date, c.cardholder_name, c.agency_code, c.termination_date, c.card_status,
-       t.merchant_name, t.amount
-FROM {q('transactions')} t
-JOIN {q('cardholders')} c ON t.card_id = c.card_id
-WHERE c.termination_date IS NOT NULL AND t.transaction_date > c.termination_date
-ORDER BY t.transaction_date"""),
-    ("What share of monthly statements were reconciled within 30 days of the statement date, by agency?", f"""
-SELECT s.agency_code, a.agency_name, COUNT(*) AS statements,
-       ROUND(100 * AVG(CASE WHEN s.reconciled AND s.days_to_reconcile <= 30 THEN 1 ELSE 0 END), 1) AS pct_reconciled_within_30_days
-FROM {q('monthly_statements')} s
-JOIN {q('agencies')} a ON s.agency_code = a.agency_code
-GROUP BY s.agency_code, a.agency_name
-ORDER BY pct_reconciled_within_30_days"""),
-]
-
-SAMPLE_QUESTIONS = [
-    "What was total P-card spend by agency in FY2026?",
-    "Which agencies have the highest rate of transactions missing a receipt in FY2026?",
-    "Which transactions were made on a card after the cardholder's termination date?",
-    "Show monthly P-card spend for FY2026 as a line chart.",
-    "Compare each agency's FY2026 P-card spend with its annual P-card budget.",
-]
-
-space = {
-    "version": 2,
-    "config": {"sample_questions": sorted([{"id": tid("sq/" + s), "question": [s]} for s in SAMPLE_QUESTIONS], key=lambda x: x["id"])},
-    "data_sources": {"tables": sorted([{"identifier": t(n)} for n in
-                     ["agencies", "agency_budgets", "cardholders", "merchant_categories", "monthly_statements", "transactions"]],
-                     key=lambda x: x["identifier"])},
-    "instructions": {
-        "text_instructions": [{"id": tid("instructions"), "content": lines(INSTRUCTIONS)}],
-        "example_question_sqls": sorted([{"id": tid("ex/" + qq), "question": [qq], "sql": lines(sql)} for qq, sql in EXAMPLES],
-                                        key=lambda x: x["id"]),
-    },
-}
-DESCRIPTION = ("Synthetic NC state purchasing card (P-card) activity for FY2025 and FY2026, for the OSA Genie workshop. "
-               "Ask about spend, receipts, reconciliations, budgets, split purchases, terminated cardholders and blocked merchants. Training data only.")
-
-# The agent's ID is saved on the schema, so re-runs update this notebook's own agent and never touch anyone else's.
-existing = (w.schemas.get(f"{CATALOG}.{SCHEMA}").properties or {}).get("genie_space_id")
-if existing:
-    try:
-        api.do("GET", f"/api/2.0/genie/spaces/{existing}")
-    except Exception:
-        print(f"Saved agent {existing} no longer exists or isn't accessible. Creating a new one.")
-        existing = None
-
-body = {"title": AGENT_TITLE, "description": DESCRIPTION, "warehouse_id": WAREHOUSE_ID, "serialized_space": json.dumps(space)}
-if existing:
-    # Leave the title alone on update, so a rename in the UI isn't undone and names never collide.
-    api.do("PATCH", f"/api/2.0/genie/spaces/{existing}", body={k: v for k, v in body.items() if k != "title"})
-    SPACE_ID = existing
-    print(f"Updated Genie Agent: {AGENT_TITLE}")
-else:
-    me = w.current_user.me().user_name
-    body["parent_path"] = f"/Workspace/Users/{me}"
-    SPACE_ID = api.do("POST", "/api/2.0/genie/spaces", body=body)["space_id"]
-    spark.sql(f"ALTER SCHEMA {FQ} SET DBPROPERTIES ('genie_space_id' = '{SPACE_ID}')")
-    print(f"Created Genie Agent: {AGENT_TITLE}")
-host = w.config.host.rstrip("/")
-print(f"Open it: {host}/genie/rooms/{SPACE_ID}")
-
-# COMMAND ----------
-
-# MAGIC %md ## 4. Optional: share with the business users
-
-# COMMAND ----------
-
-if SHARE_GROUP:
-    for stmt in [f"GRANT USE CATALOG ON CATALOG `{CATALOG}` TO `{SHARE_GROUP}`",
-                 f"GRANT USE SCHEMA, SELECT ON SCHEMA {FQ} TO `{SHARE_GROUP}`"]:
-        try:
-            spark.sql(stmt); print(stmt)
-        except Exception as e:
-            print(f"Could not run: {stmt}\n  {str(e).splitlines()[0]}\n  Ask a catalog owner to run it.")
-    try:
-        api.do("PATCH", f"/api/2.0/permissions/genie/{SPACE_ID}",
-               body={"access_control_list": [{"group_name": SHARE_GROUP, "permission_level": "CAN_RUN"}]})
-        print(f"Granted CAN RUN on the agent to {SHARE_GROUP}")
-    except Exception as e:
-        print(f"Could not set agent permissions automatically ({e}). Open the agent, click Share, and add {SHARE_GROUP} with Can Run.")
-else:
-    print("No group set. To share: grant the group USE CATALOG, USE SCHEMA and SELECT on the schema, then Share the agent with Can Run.")
-
-# COMMAND ----------
-
-# MAGIC %md ## 5. Self-test
-
-# COMMAND ----------
-
-checks = {
-    "Split purchase groups": f"""SELECT COUNT(*) FROM (SELECT t.card_id FROM {q('transactions')} t JOIN {q('cardholders')} c ON t.card_id = c.card_id
-        GROUP BY t.card_id, t.merchant_name, t.transaction_date, c.single_purchase_limit
-        HAVING COUNT(*) >= 2 AND MAX(t.amount) <= c.single_purchase_limit AND SUM(t.amount) > c.single_purchase_limit)""",
-    "Purchases after termination": f"""SELECT COUNT(*) FROM {q('transactions')} t JOIN {q('cardholders')} c ON t.card_id = c.card_id
-        WHERE c.termination_date IS NOT NULL AND t.transaction_date > c.termination_date""",
-    "Blocked category purchases": f"""SELECT COUNT(*) FROM {q('transactions')} t JOIN {q('merchant_categories')} m ON t.mcc = m.mcc WHERE m.is_blocked""",
-    "FY2026 total spend ($)": f"SELECT ROUND(SUM(amount), 2) FROM {q('transactions')} WHERE fiscal_year = 2026",
-    "Unreconciled statements": f"SELECT COUNT(*) FROM {q('monthly_statements')} WHERE NOT reconciled",
-}
-for label, sql in checks.items():
-    value = spark.sql(sql).collect()[0][0]
-    print(f"  {label}: {value:,}")
-    assert value and value > 0, f"Self-test failed: {label} returned {value}"
-print("\nSetup complete.")

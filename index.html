@@ -54,9 +54,9 @@
     <a href="#data"><span class="stop"></span>Meet the data</a>
     <a href="#questions"><span class="stop"></span>Today's questions</a>
     <a href="#lab1"><span class="bullet sm b-red">1</span>Genie One and Agents</a>
-    <a href="#lab2"><span class="bullet sm b-blue">2</span>Navigate and ask</a>
-    <a href="#lab3"><span class="bullet sm b-yellow">3</span>Go deeper</a>
-    <a href="#lab4"><span class="bullet sm b-green">4</span>Schedule and customize</a>
+    <a href="#lab2"><span class="bullet sm b-blue">2</span>Create your agent</a>
+    <a href="#lab3"><span class="bullet sm b-yellow">3</span>Navigate and ask</a>
+    <a href="#lab4"><span class="bullet sm b-green">4</span>Files, schedules, customizing</a>
     <a href="#lab5"><span class="bullet sm b-purple">5</span>Best practices and Q&amp;A</a>
     <a href="#next"><span class="stop"></span>After today</a>
     <a href="#cheatsheet"><span class="stop"></span>Cheat sheet</a>
@@ -73,9 +73,9 @@
     <thead><tr><th>Time (ET)</th><th>Session</th><th>On this page</th></tr></thead>
     <tbody>
       <tr class="lab-row"><td class="slot">12:00 to 12:10</td><td>Genie One, Genie Agents, and why you can trust the answers</td><td><span class="bullet sm b-red">1</span> <a href="#lab1">Where Genie lives and how it protects your data</a></td></tr>
-      <tr class="lab-row"><td class="slot">12:10 to 12:25</td><td>Navigation and interaction</td><td><span class="bullet sm b-blue">2</span> <a href="#lab2">Ask, follow up, check the work, chart, download, share</a></td></tr>
-      <tr class="lab-row"><td class="slot">12:25 to 12:35</td><td>Go deeper: Agent mode and your own files</td><td><span class="bullet sm b-yellow">3</span> <a href="#lab3">Multi-step research and an uploaded workpaper</a></td></tr>
-      <tr class="lab-row"><td class="slot">12:35 to 12:50</td><td>Scheduling and customizing</td><td><span class="bullet sm b-green">4</span> <a href="#lab4">Scheduled tasks, memory, skills, feedback</a></td></tr>
+      <tr class="lab-row"><td class="slot">12:10 to 12:20</td><td>Create your Genie Agent</td><td><span class="bullet sm b-blue">2</span> <a href="#lab2">Point Genie at the P-card tables and give it a name</a></td></tr>
+      <tr class="lab-row"><td class="slot">12:20 to 12:35</td><td>Navigation and interaction</td><td><span class="bullet sm b-yellow">3</span> <a href="#lab3">Ask, follow up, check the work, chart, download, share, Agent mode</a></td></tr>
+      <tr class="lab-row"><td class="slot">12:35 to 12:50</td><td>Your files, schedules and customizing</td><td><span class="bullet sm b-green">4</span> <a href="#lab4">Upload a workpaper, schedule a check, memory, skills, feedback</a></td></tr>
       <tr class="lab-row"><td class="slot">12:50 to 1:00</td><td>Best practices and Q&amp;A</td><td><span class="bullet sm b-purple">5</span> <a href="#lab5">Habits that get the right answer, then your questions</a></td></tr>
     </tbody>
   </table>
@@ -85,25 +85,24 @@
 <!-- ============================================================ GET READY -->
 <section id="start">
   <h2>Get ready <span class="when">Before 12:00, about 2 minutes</span></h2>
-  <p>You can simply watch today. If you'd like to follow along, open Genie in a second window or on a second screen.</p>
+  <p>You can simply watch today. If you'd like to follow along, open Databricks in a second window or on a second screen.</p>
   <ol class="steps" data-group="start">
     <li><label><input type="checkbox" data-id="s1"> Sign in to the OSA Databricks workspace the way you normally do.</label></li>
-    <li><label><input type="checkbox" data-id="s2"> Open <strong>Genie One</strong> from the <strong>app switcher</strong> in the upper right. You can also add <code>/one</code> to the end of your workspace address. If you only use Genie, you may land on Genie One automatically.</label></li>
-    <li><label><input type="checkbox" data-id="s3"> In the search bar, look for the <strong>OSA P-Card Review (Workshop)</strong> agent and open it.</label></li>
-    <li><label><input type="checkbox" data-id="s4"> Ask <q>What data can you answer questions about?</q> If you get an answer, you're ready.</label></li>
+    <li><label><input type="checkbox" data-id="s2"> Click <strong>Catalog</strong> in the sidebar and find the <code>osa_pcard_review</code> schema. The data team will tell you which catalog it's in. You should see six tables.</label></li>
+    <li><label><input type="checkbox" data-id="s3"> Check that you can see <strong>Genie Agents</strong> in the sidebar. That's where you'll create your agent in section 2.</label></li>
+    <li><label><input type="checkbox" data-id="s4"> Open <strong>Genie One</strong> from the <strong>app switcher</strong> in the upper right, or add <code>/one</code> to the end of your workspace address. Keep that tab open too.</label></li>
   </ol>
-  <div class="callout info"><strong>Who sets up the agent?</strong> The workshop agent and its data don't come with Databricks. Someone on the OSA Data Analytics team
-  creates them once, before the session, by running one notebook. It takes about five minutes: see <a href="setup.html">Setup for the data team</a>.</div>
-  <div class="callout tip"><strong>Can't find the agent, or the answer comes back empty?</strong> That usually means your account hasn't been given access yet.
-  Keep watching on the shared screen, and let us know after the session so the data team can add you.</div>
+  <div class="callout info"><strong>What's ready before you arrive:</strong> the OSA data team has loaded the workshop tables and given you read access. Everything else, including the Genie Agent, you'll build yourself during the session.</div>
+  <div class="callout tip"><strong>Can't see the schema, or there's no Genie Agents item in your sidebar?</strong> Your account may be missing table access or the Databricks SQL entitlement.
+  Keep watching on the shared screen, and let the data team know after the session.</div>
 </section>
 
 <!-- ============================================================ DATA -->
 <section id="data">
   <h2>Meet the data</h2>
-  <p>The workshop agent sits on one schema of synthetic P-card data covering <strong>FY2025 and FY2026</strong> (July 2024 through June 2026), with about 1,800 cards and 180,000 purchases. Every table and column has a
+  <p>The workshop uses one schema of synthetic P-card data covering <strong>FY2025 and FY2026</strong> (July 2024 through June 2026), with about 1,800 cards and 180,000 purchases. Every table and column has a
   plain-English description in Unity Catalog. <strong>Genie reads those descriptions</strong>, which is a big part of why it can turn your words into the right query.</p>
-  <p class="schema">Schema <code>osa_pcard_review</code> (in the catalog your data team chose): a statewide view of purchasing card activity across 12 fictional agencies.</p>
+  <p class="schema">Schema <code>osa_pcard_review</code>, in the catalog the data team chose: a statewide view of purchasing card activity across 12 fictional agencies.</p>
   <table class="tables">
     <thead><tr><th>Table</th><th>Grain</th><th>What's in it</th></tr></thead>
     <tbody>
@@ -115,7 +114,7 @@
       <tr><td><code>monthly_statements</code></td><td>1 row / card / month</td><td>Statement total, whether it was <em>reconciled</em>, the reconciliation date, and the approver.</td></tr>
     </tbody>
   </table>
-  <div class="callout tip"><strong>The data stops on June 30, 2026.</strong> When you say "last 90 days" or "yesterday", the agent counts back from that date, not from today.</div>
+  <div class="callout tip"><strong>The data stops on June 30, 2026.</strong> Genie doesn't know that, so "last 90 days" or "yesterday" would count back from today and find nothing. Use real dates instead, as today's questions do.</div>
   <div class="callout info"><strong>Things planted in the data for you to find:</strong> split purchases kept just under a card's limit, purchases on cards after the employee left,
   blocked merchant categories, weekend and late-night activity, missing receipts, and statements reconciled late or not at all.</div>
 </section>
@@ -123,8 +122,8 @@
 <!-- ============================================================ QUESTIONS -->
 <section id="questions">
   <h2>Today's questions</h2>
-  <p>We've written the questions ahead of time so the hour goes to <em>using</em> Genie, not typing. Click <strong>Copy</strong> on any question and paste it into the agent.
-  Each tab looks at the same data through a different team's eyes.</p>
+  <p>We've written the questions ahead of time so the hour goes to <em>using</em> Genie, not typing. Click <strong>Copy</strong> on any question and paste it into your agent.
+  Each tab looks at the same data through a different team's eyes. Notice how the questions spell out dates and definitions: your new agent only knows what's in the tables.</p>
   <div class="tabs" data-tabs="questions" data-label="Your team:">
     <div class="tab-buttons">
       <button class="active" data-tab="q-fin">Financial Audit</button>
@@ -132,25 +131,25 @@
       <button data-tab="q-rr">Rapid Response</button>
     </div>
     <div class="tab-panel active" id="q-fin">
-      <p class="q">What was total P-card spend by agency in FY2026?</p>
-      <p class="q">Show monthly P-card spend for FY2026 as a line chart.</p>
+      <p class="q">What was total P-card spend by agency in fiscal year 2026?</p>
+      <p class="q">Show monthly P-card spend for fiscal year 2026 as a line chart.</p>
       <p class="q">What share of monthly statements were reconciled within 30 days of the statement date, by agency?</p>
-      <p class="q">Which cardholders have statements that are still unreconciled after 60 days, and how much do they total?</p>
-      <p class="q">For DRB, list every FY2026 transaction over $2,500 with the merchant and whether a receipt is attached.</p>
+      <p class="q">As of June 30, 2026, which cardholders have statements that are still unreconciled more than 60 days after the statement date, and how much do they total?</p>
+      <p class="q">For agency DRB, list every fiscal year 2026 transaction over $2,500 with the merchant and whether a receipt is attached.</p>
     </div>
     <div class="tab-panel" id="q-perf">
-      <p class="q">Which agencies have the highest rate of transactions missing a receipt in FY2026?</p>
-      <p class="q">How did average transaction size change from FY2025 to FY2026, by agency?</p>
-      <p class="q">What percentage of active cards had no purchases in the last 90 days of FY2026?</p>
-      <p class="q">Compare each agency's FY2026 P-card spend with its annual P-card budget.</p>
-      <p class="q">Which merchant categories grew the most in spend from FY2025 to FY2026?</p>
+      <p class="q">Which agencies have the highest share of fiscal year 2026 transactions with no receipt attached?</p>
+      <p class="q">How did average transaction size change from fiscal year 2025 to fiscal year 2026, by agency?</p>
+      <p class="q">What percentage of active cards had no purchases between April 1 and June 30, 2026?</p>
+      <p class="q">Compare each agency's fiscal year 2026 P-card spend with its fiscal year 2026 P-card budget.</p>
+      <p class="q">Which merchant category groups grew the most in spend from fiscal year 2025 to fiscal year 2026?</p>
     </div>
     <div class="tab-panel" id="q-rr">
-      <p class="q">Find possible split purchases: same cardholder, same merchant, same day, where the combined total is over the card's single-purchase limit.</p>
+      <p class="q">Find possible split purchases: same cardholder, same merchant, same day, where each purchase is under the card's single-purchase limit but the combined total is over it.</p>
       <p class="q">Which transactions were made on a card after the cardholder's termination date?</p>
-      <p class="q">List FY2026 transactions at blocked merchant categories, with agency and cardholder.</p>
-      <p class="q">How many transactions happened on weekends or between 10 PM and 5 AM, by agency?</p>
-      <p class="q">Which 10 cardholders have the most red flags across all of these checks combined?</p>
+      <p class="q">List fiscal year 2026 transactions at blocked merchant categories, with agency and cardholder.</p>
+      <p class="q">How many transactions happened on a Saturday or Sunday, or between 10 PM and 5 AM, by agency?</p>
+      <p class="q">Rank cardholders by their total red flags, counting split purchases, purchases after termination, blocked-category purchases, weekend or late-night purchases, and missing receipts. Show the top 10.</p>
     </div>
   </div>
 </section>
@@ -161,14 +160,13 @@
   <p class="goal"><strong>Goal:</strong> know where Genie lives, what each part is for, and why its answers are safe to work with. <span class="time">12:00 · 10 min</span></p>
   <div class="cards two">
     <div class="card"><h3>Genie One</h3><p>Your home page for data at OSA (it used to be called Databricks One). One search bar for dashboards, Genie Agents and apps, plus a full-screen
-    <strong>Chat</strong>, <strong>For you</strong> recommendations, and a sidebar with <strong>Domains</strong>, <strong>Scheduled tasks</strong> and <strong>Documents</strong>.</p></div>
-    <div class="card"><h3>Genie Agents</h3><p>A chat focused on one subject, such as P-card activity, built by the data team on curated tables. Genie Agents used to be called <em>Genie spaces</em>.
-    The agent already knows the tables, the definitions and the business terms, so you can just ask.</p></div>
+    <strong>Chat</strong>, <strong>For you</strong> recommendations, and a sidebar with <strong>Domains</strong>, <strong>Schedules</strong> and <strong>Documents</strong>.</p></div>
+    <div class="card"><h3>Genie Agents</h3><p>A chat focused on one subject, such as P-card activity, that answers questions from a set of tables you choose. Genie Agents used to be called <em>Genie spaces</em>.
+    Data teams usually add definitions and examples so the agent speaks your language. Today you'll start from just the tables.</p></div>
   </div>
   <ol class="steps" data-group="lab1">
     <li><label><input type="checkbox" data-id="l1a"> Look around the Genie One home page: the search bar, <strong>For you</strong>, and the sidebar.</label></li>
-    <li><label><input type="checkbox" data-id="l1b"> Type <q>p-card</q> into the search bar and see which dashboards and agents come back.</label></li>
-    <li><label><input type="checkbox" data-id="l1c"> Open the workshop agent and read its description and suggested questions.</label></li>
+    <li><label><input type="checkbox" data-id="l1b"> Type a topic into the search bar and see which dashboards and agents already exist at OSA.</label></li>
   </ol>
   <h3>Why you can trust what it shows you</h3>
   <ul>
@@ -181,65 +179,71 @@
 
 <!-- ============================================================ LAB 2 -->
 <section id="lab2" class="lab">
-  <h2><span class="bullet b-blue">2</span> Navigate and ask</h2>
-  <p class="goal"><strong>Goal:</strong> have a real conversation with the agent, and learn to <em>check the work</em>, not just read the answer. <span class="time">12:10 · 15 min</span></p>
+  <h2><span class="bullet b-blue">2</span> Create your Genie Agent</h2>
+  <p class="goal"><strong>Goal:</strong> build your own P-card agent from the workshop tables, in a few clicks. <span class="time">12:10 · 10 min</span></p>
   <ol class="steps" data-group="lab2">
-    <li><label><input type="checkbox" data-id="l2a"> Paste a question from <a href="#questions">your team's tab</a>, or click one of the agent's suggested questions.</label></li>
-    <li><label><input type="checkbox" data-id="l2b"> Ask a <strong>follow-up</strong> that builds on the answer, such as <q>only for DCH</q> or <q>now split that by quarter</q>. Follow-ups stay in the same thread, so Genie remembers the context.</label></li>
-    <li><label><input type="checkbox" data-id="l2c"> If Genie asks a <strong>clarifying question</strong> (for example, which fiscal year you mean), answer it in plain words.</label></li>
-    <li><label><input type="checkbox" data-id="l2d"> Open <strong>Show code</strong> and read the steps. Which tables did it use, which filters, and which time period?</label></li>
-    <li><label><input type="checkbox" data-id="l2e"> Ask for a visual: <q>show that as a bar chart</q>. Then change the chart type in the side panel.</label></li>
-    <li><label><input type="checkbox" data-id="l2f"> Use the <strong>pencil icon</strong> to edit an earlier question and run it again.</label></li>
-    <li><label><input type="checkbox" data-id="l2g"> <strong>Download</strong> a result as CSV for your workpaper, or the chart as PNG. You can also add a chart to a dashboard.</label></li>
-    <li><label><input type="checkbox" data-id="l2h"> Find the chat in your <strong>history</strong>, rename it, and <strong>pin</strong> it.</label></li>
-    <li><label><input type="checkbox" data-id="l2i"> Open <strong>Share</strong> and look at the three options: private, reviewable by the agent's managers (the default), or all users. A shared chat is live and read-only for the people you share it with.</label></li>
+    <li><label><input type="checkbox" data-id="l2a"> In the workspace sidebar, click <strong>Genie Agents</strong>, then <strong>New</strong> in the upper right.</label></li>
+    <li><label><input type="checkbox" data-id="l2b"> Choose the data: browse to the <code>osa_pcard_review</code> schema and select all six tables. Then click <strong>Create</strong>.</label></li>
+    <li><label><input type="checkbox" data-id="l2c"> Genie may offer suggestions, such as table descriptions or example queries. Skip them for today. Tuning an agent is covered in a separate session for the data team.</label></li>
+    <li><label><input type="checkbox" data-id="l2d"> Rename the agent so you can find it later, for example <q>P-Card Review (your name)</q>.</label></li>
+    <li><label><input type="checkbox" data-id="l2e"> Ask a first question to make sure it works: <q>What data can you answer questions about?</q></label></li>
   </ol>
+  <div class="callout tip"><strong>Error about a warehouse?</strong> Every agent needs a SQL warehouse to run its queries. Open <strong>Configure</strong>, then <strong>Settings</strong>, and pick one under <strong>Default warehouse</strong>. If the list is empty, ask the data team for access.</div>
+  <div class="callout info"><strong>Your agent is yours.</strong> You own it, so you can rename it, share it with a colleague, or delete it. It only ever sees data you already have permission to read.</div>
+</section>
+
+<!-- ============================================================ LAB 3 -->
+<section id="lab3" class="lab">
+  <h2><span class="bullet b-yellow">3</span> Navigate and ask</h2>
+  <p class="goal"><strong>Goal:</strong> have a real conversation with your agent, and learn to <em>check the work</em>, not just read the answer. <span class="time">12:20 · 15 min</span></p>
+  <ol class="steps" data-group="lab3">
+    <li><label><input type="checkbox" data-id="l3a"> Paste a question from <a href="#questions">your team's tab</a>.</label></li>
+    <li><label><input type="checkbox" data-id="l3b"> Ask a <strong>follow-up</strong> that builds on the answer, such as <q>only for agency DCH</q> or <q>now split that by quarter</q>. Follow-ups stay in the same thread, so Genie remembers the context.</label></li>
+    <li><label><input type="checkbox" data-id="l3c"> If Genie asks a <strong>clarifying question</strong>, answer it in plain words.</label></li>
+    <li><label><input type="checkbox" data-id="l3d"> Open <strong>Show code</strong> and read the steps. Which tables did it use, which filters, and which time period?</label></li>
+    <li><label><input type="checkbox" data-id="l3e"> Ask for a visual: <q>show that as a bar chart</q>. Then change the chart type in the side panel.</label></li>
+    <li><label><input type="checkbox" data-id="l3f"> Use the <strong>pencil icon</strong> to edit an earlier question and run it again.</label></li>
+    <li><label><input type="checkbox" data-id="l3g"> <strong>Download</strong> a result as CSV for your workpaper, or the chart as PNG.</label></li>
+    <li><label><input type="checkbox" data-id="l3h"> Find the chat in your <strong>history</strong>, rename it, and <strong>pin</strong> it.</label></li>
+    <li><label><input type="checkbox" data-id="l3i"> Open <strong>Share</strong> on the chat and look at the options. A shared chat is live and read-only for the people you share it with, and they still need access to the data.</label></li>
+  </ol>
+  <h3>Agent mode: multi-step research</h3>
+  <p>For open-ended questions, switch the chat to <strong>Agent mode</strong>. Genie plans several queries, runs them, and writes up what it found with tables and charts.
+  It takes longer than a normal answer. Click <strong>Answer now</strong> to stop early, or <strong>Download PDF</strong> to keep the write-up.</p>
+  <p class="q">Review fiscal year 2026 P-card activity for agency DCH and summarize the top risks an auditor should test first, with a supporting table for each.</p>
   <div class="callout tip"><strong>Habit to build:</strong> before you rely on an answer, ask yourself, "would I sign off on this query?"
   Reading <strong>Show code</strong> is how you test Genie's work, the same way you'd test any other evidence.</div>
   <div class="callout info"><strong>Results are kept for 7 days.</strong> Your chats stay in history, but query results expire after a week. Rerun the question or download what you need for the file.</div>
 </section>
 
-<!-- ============================================================ LAB 3 -->
-<section id="lab3" class="lab">
-  <h2><span class="bullet b-yellow">3</span> Go deeper: Agent mode and your own files</h2>
-  <p class="goal"><strong>Goal:</strong> handle a bigger question in one go, and bring your own spreadsheet into the conversation. <span class="time">12:25 · 10 min</span></p>
-  <h3>Agent mode: multi-step research</h3>
-  <p>For open-ended questions, switch the chat to <strong>Agent mode</strong>. Genie plans several queries, runs them, and writes up what it found with tables, charts and citations.
-  It takes longer than a normal answer. Click <strong>Answer now</strong> to stop early, or <strong>Download PDF</strong> to keep the write-up.</p>
-  <p class="q">Review DCH P-card activity in FY2026 and summarize the top risks an auditor should test first, with a supporting table for each.</p>
-  <p class="q">Profile the cardholders with possible split purchases: their agencies, limits, merchants, and how often it happens.</p>
+<!-- ============================================================ LAB 4 -->
+<section id="lab4" class="lab">
+  <h2><span class="bullet b-green">4</span> Your files, schedules and customizing</h2>
+  <p class="goal"><strong>Goal:</strong> bring your own spreadsheet in, have Genie run routine checks for you, and teach it how you work. <span class="time">12:35 · 15 min</span></p>
   <h3>Bring your own file</h3>
-  <p>You can drop a <strong>CSV or Excel</strong> file into the chat and ask questions about it, alongside the agent's data. Try it with our sample test workpaper.</p>
-  <ol class="steps" data-group="lab3">
-    <li><label><input type="checkbox" data-id="l3a"> Download <a href="osa_pcard_test_sample.csv" download><code>osa_pcard_test_sample.csv</code></a>: 60 sampled transactions with test results.</label></li>
-    <li><label><input type="checkbox" data-id="l3b"> Attach it to the chat with the upload (paperclip) button.</label></li>
-    <li><label><input type="checkbox" data-id="l3c"> With the file attached, ask about it. Without the file, Genie will tell you it can't see these test columns.</label></li>
+  <p>You can add a <strong>CSV or Excel</strong> file to a chat and ask questions about it. Try it with our sample test workpaper.</p>
+  <ol class="steps" data-group="lab4">
+    <li><label><input type="checkbox" data-id="l4a"> Download <a href="osa_pcard_test_sample.csv" download><code>osa_pcard_test_sample.csv</code></a>: 60 sampled transactions with test results.</label></li>
+    <li><label><input type="checkbox" data-id="l4b"> In a chat, click the <strong>+</strong> in the message box, choose <strong>Add files</strong>, and pick the file. You can also drag it in.</label></li>
+    <li><label><input type="checkbox" data-id="l4c"> With the file attached, ask about it:</label></li>
   </ol>
   <p class="q">Summarize the exceptions in this test sample by agency: missing receipts, missing approvals and undocumented business purpose.</p>
   <p class="q">Which sampled items failed more than one test? Show them in a table sorted by amount.</p>
-  <div class="callout tip"><strong>Upload not showing?</strong> File upload isn't available to every account type, or in the mobile app. If you don't see it, watch the demo and ask the data team about access.</div>
-  <div class="callout info"><strong>Out in the field?</strong> Genie is also available in a mobile app (Preview), handy for Rapid Response staff working outside Raleigh.</div>
-</section>
-
-<!-- ============================================================ LAB 4 -->
-<section id="lab4" class="lab">
-  <h2><span class="bullet b-green">4</span> Schedule and customize</h2>
-  <p class="goal"><strong>Goal:</strong> have Genie do the routine checks for you, and teach it how you like to work. <span class="time">12:35 · 15 min</span></p>
-  <h3>Scheduled tasks</h3>
-  <p>A scheduled task asks a question for you on a set schedule, posts the answer to a chat thread, and can email you the results with a PDF attached. You don't need special permissions to create one.</p>
-  <ol class="steps" data-group="lab4">
-    <li><label><input type="checkbox" data-id="l4a"> In the Genie One sidebar, open <strong>Scheduled tasks</strong> and create a new task.</label></li>
-    <li><label><input type="checkbox" data-id="l4b"> Write what you want checked, in plain words:</label></li>
-  </ol>
-  <p class="q">Every morning, list any new P-card transactions from the previous day at blocked merchant categories or on cards whose holder has a termination date. Include agency, cardholder, merchant and amount.</p>
+  <div class="callout tip"><strong>No + button?</strong> File upload isn't available to every account type, or in the mobile app. Watch the demo and ask the data team about access.</div>
+  <h3>Schedules</h3>
+  <p>A scheduled task asks a question for you on a set schedule, posts the answer to a chat thread, and can email you the results with a PDF attached.</p>
   <ol class="steps" data-group="lab4b">
-    <li><label><input type="checkbox" data-id="l4c"> Set the schedule (daily is the most frequent option) and turn on email delivery.</label></li>
-    <li><label><input type="checkbox" data-id="l4d"> Click <strong>Run now</strong> to test it straight away instead of waiting for tomorrow.</label></li>
+    <li><label><input type="checkbox" data-id="l4d"> In the Genie One sidebar, click <strong>Schedules</strong>. Use the drop-down next to <strong>Create in chat</strong> and choose <strong>Create manually</strong>.</label></li>
+    <li><label><input type="checkbox" data-id="l4e"> Give it a title, and paste this as the instructions:</label></li>
   </ol>
-  <p class="muted small">Because the workshop data stops on June 30, 2026, this task returns the same rows every day. On live data, each run picks up the new activity.</p>
+  <p class="q">Using my P-card agent, list transactions from the most recent 7 days in the data that were at blocked merchant categories or made after the cardholder's termination date. Include agency, cardholder, merchant and amount.</p>
+  <ol class="steps" data-group="lab4c">
+    <li><label><input type="checkbox" data-id="l4f"> Set the schedule and timezone, then click <strong>Create</strong>. You can also just describe the task in a chat and Genie will set it up for you.</label></li>
+  </ol>
+  <p class="muted small">The workshop data stops on June 30, 2026, so this task returns the same rows each time. On live data, each run picks up new activity.</p>
   <div class="cards two">
     <div class="card fin"><h3>Financial Audit idea</h3><p>Weekly: statements still unreconciled after 30 days, by agency, with the dollar total.</p></div>
-    <div class="card perf"><h3>Performance Audit idea</h3><p>Monthly: missing-receipt rate by agency compared with last month.</p></div>
+    <div class="card perf"><h3>Performance Audit idea</h3><p>Monthly: missing-receipt rate by agency compared with the month before.</p></div>
   </div>
   <h3>Make it yours</h3>
   <div class="cards two">
@@ -248,7 +252,7 @@
     <div class="card"><h3>Skills <span class="pill">Preview</span></h3><p>A skill is a short instruction file you upload to teach Genie a repeatable procedure, such as your team's steps for a split-purchase test.
       It's in Preview, so it may not be turned on in your workspace yet.</p></div>
     <div class="card"><h3>Pin and organize</h3><p>Pin the chats you return to, and give them clear names, such as <q>FY26 DRB P-card testing</q>, so you can find them again.</p></div>
-    <div class="card"><h3>Send feedback</h3><p>Mark a good answer <strong>Yes</strong>, or click <strong>Fix it</strong> when it's wrong. <strong>Request review</strong> flags an answer for the people who manage the agent, so they can see where it needs work.</p></div>
+    <div class="card"><h3>Send feedback</h3><p>Mark a good answer <strong>Yes</strong>, or click <strong>Fix it</strong> when it's wrong. On an agent someone else manages, <strong>Request review</strong> flags the answer for them so they can see where it needs work.</p></div>
   </div>
 </section>
 
@@ -289,7 +293,7 @@ Notes (terms Genie needs defined, data it would need):</pre></div>
 <section id="next">
   <h2>After today</h2>
   <div class="cards two">
-    <div class="card"><h3>Keep practicing</h3><p>The workshop agent stays available, so keep trying your team's questions on it. Then try the same habits on the Genie Agents your team uses every day.</p></div>
+    <div class="card"><h3>Keep practicing</h3><p>Your agent stays in your workspace, so keep trying your team's questions on it. Then use the same habits on the Genie Agents your team uses every day.</p></div>
     <div class="card"><h3>Share your questions</h3><p>Use the <a href="#lab5">question template</a> to write up what you tried, and share it with the OSA Data Analytics team.</p></div>
     <div class="card"><h3>Free self-paced training</h3><p>Databricks Academy has free courses on answering business questions with Genie, at your own pace.</p></div>
     <div class="card"><h3>Contact</h3><p>Amir Lyall, Solutions Architect: <a href="mailto:amir.lyall@databricks.com">amir.lyall@databricks.com</a><br>Scott Spofford, Account Executive: <a href="mailto:scott.spofford@databricks.com">scott.spofford@databricks.com</a></p></div>
@@ -310,7 +314,9 @@ Notes (terms Genie needs defined, data it would need):</pre></div>
       <li><strong>Genie One:</strong> app switcher, upper right.</li>
       <li><strong>Show code:</strong> under each answer.</li>
       <li><strong>Download and charts:</strong> on the result and in the side panel.</li>
-      <li><strong>Scheduled tasks:</strong> Genie One sidebar.</li>
+      <li><strong>New agent:</strong> workspace sidebar, Genie Agents, New.</li>
+      <li><strong>Schedules:</strong> Genie One sidebar.</li>
+      <li><strong>Upload a file:</strong> the + in the message box.</li>
       <li><strong>Share:</strong> top of the chat.</li>
       <li><strong>Feedback:</strong> Yes, Fix it, or Request review under each answer.</li></ul></div>
   </div>
@@ -320,12 +326,13 @@ Notes (terms Genie needs defined, data it would need):</pre></div>
 <section id="troubleshooting">
   <h2>Troubleshooting &amp; FAQ</h2>
   <details class="faq"><summary>Genie gave me an empty answer or said it can't find the data</summary><p>Genie only uses data you have permission to see. An empty answer often means your account doesn't have access to that table yet. Ask the data team.</p></details>
+  <details class="faq"><summary>I can't create an agent, or there's no Genie Agents item in my sidebar</summary><p>Creating an agent needs the Databricks SQL entitlement, access to a SQL warehouse, and read access to the tables. Accounts that only use Genie One can't create agents. Ask the data team, and watch the shared screen in the meantime.</p></details>
   <details class="faq"><summary>My colleague asked the same question and got a different number</summary><p>Check two things. First, open <strong>Show code</strong> on both answers, because a small wording difference can change a filter or a date range. Second, you may have different access: row filters can show each person only the rows they're allowed to see.</p></details>
   <details class="faq"><summary>Can Genie change or delete data?</summary><p>No. Genie answers questions by reading data. Nothing you ask in a chat changes the underlying tables.</p></details>
   <details class="faq"><summary>Does Genie send our data to an outside model?</summary><p>To write a query, Genie uses your question and the table and column descriptions. The query itself runs inside OSA's Databricks workspace, under your permissions. Which AI models Genie may use is controlled by your workspace administrators, so ask the OSA data team about OSA's settings.</p></details>
-  <details class="faq"><summary>The answer looks wrong</summary><p>Read <strong>Show code</strong>, rephrase with the exact measure, slice and time period, or start a new chat. If it's still wrong, click <strong>Fix it</strong> or <strong>Request review</strong> so the data team can correct the agent.</p></details>
+  <details class="faq"><summary>The answer looks wrong</summary><p>Read <strong>Show code</strong>, rephrase with the exact measure, slice and time period, or start a new chat. If the agent keeps misreading a term, define it in your question or save it as a memory. On agents the data team manages, click <strong>Fix it</strong> or <strong>Request review</strong> so they can correct it.</p></details>
   <details class="faq"><summary>My old results are gone</summary><p>Query results are kept for 7 days. The chat stays in your history, so open it and run the question again.</p></details>
-  <details class="faq"><summary>Who sees a chat I share?</summary><p>Only the people allowed by the sharing level you pick. By default, the agent's managers can review it. Recipients see it read-only, and they still need access to the data.</p></details>
+  <details class="faq"><summary>Who sees a chat I share?</summary><p>Only the people allowed by the sharing level you pick. Recipients see it read-only, and they still need access to the data.</p></details>
 </section>
 
 <footer><img src="databricks-logo.svg" alt="Databricks"><span>NC Office of the State Auditor · Genie Workshop · Tue, Nov 10, 2026 · <a href="setup.html">Setup for the data team</a> · <a href="facilitator.html">Facilitator guide</a> · Synthetic data for training purposes only. Not an OSA finding or an official statistic of the State of North Carolina.</span></footer>

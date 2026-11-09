@@ -19,27 +19,25 @@
 <p class="eyebrow">Before Tue, Nov 10, 2026 · about 5 minutes</p>
 <section id="setup">
   <h2>Setup for the OSA data team</h2>
-  <p>The business users follow along with a Genie Agent called <strong>OSA P-Card Review (Workshop)</strong>. One person creates it once, in OSA's workspace,
-  by running a single notebook. The notebook builds a synthetic P-card dataset, creates the agent with instructions and suggested questions, and can share both with the business users' group.</p>
+  <p>During the workshop, each attendee creates their own Genie Agent from a set of P-card tables. Before the session, one person loads those tables
+  into OSA's workspace by running a single notebook, and makes sure attendees can use them. That's the only setup. Attendees build everything else themselves.</p>
 
   <h3>What you need</h3>
   <ul>
     <li>A catalog where you can create a schema (CREATE SCHEMA, or ownership of the catalog).</li>
-    <li>Permission to create Genie Agents and use a SQL warehouse (a serverless warehouse is best).</li>
-    <li>The name of the group the business users belong to, if you want the notebook to share everything for you.</li>
+    <li>Serverless compute, or a cluster, to run the notebook.</li>
+    <li>Permission to grant the attendees' group access to the schema and to a pro or serverless SQL warehouse.</li>
   </ul>
 
   <h3>Steps</h3>
   <ol class="steps" data-group="ds">
     <li><label>Download the notebook: <a href="osa_genie_workshop_setup.py" download><code>osa_genie_workshop_setup.py</code></a>.</label></li>
     <li><label>In the workspace, open <strong>Workspace</strong>, go to a folder you own, and use <strong>Import</strong> to upload the file.</label></li>
-    <li><label>Open the notebook and fill in the widgets at the top:
-      <code>catalog</code> (required), <code>schema</code> (default <code>osa_pcard_review</code>), <code>warehouse_id</code> (leave blank to auto-pick),
-      and <code>share_with_group</code> (the business users' group, optional).</label></li>
-    <li><label>Connect to <strong>Serverless</strong> compute and click <strong>Run all</strong>. It takes a few minutes.</label></li>
-    <li><label>At the end, the notebook prints a link to the agent and a self-test (split purchases, purchases after termination, blocked categories). Open the agent and ask one of its suggested questions.</label></li>
-    <li><label>If you didn't set <code>share_with_group</code>, grant the group <code>USE CATALOG</code>, <code>USE SCHEMA</code> and <code>SELECT</code> on the schema, then open the agent, click <strong>Share</strong>, and add the group with <strong>Can Run</strong>.</label></li>
-    <li><label>Sign in as a business user (or ask one to check) and confirm they can find the agent from Genie One and get an answer.</label></li>
+    <li><label>Open the notebook and fill in the widgets at the top: <code>catalog</code> (required) and <code>schema</code> (default <code>osa_pcard_review</code>).</label></li>
+    <li><label>Connect to <strong>Serverless</strong> compute and click <strong>Run all</strong>. It takes a few minutes and prints a row count for each table.</label></li>
+    <li><label>Grant the attendees' group <code>USE CATALOG</code> on the catalog, and <code>USE SCHEMA</code> and <code>SELECT</code> on the schema. Then open a pro or serverless SQL warehouse, click <strong>Permissions</strong>, and give the group <strong>Can use</strong>.</label></li>
+    <li><label>Check that the group has the <strong>Databricks SQL</strong> entitlement (Settings, Identity and access, Groups). Without it, attendees can't create a Genie Agent.</label></li>
+    <li><label>Tell attendees which catalog the schema is in, and ask one of them to check they can see the six tables under <strong>Catalog</strong>.</label></li>
   </ol>
 
   <h3>What gets created</h3>
@@ -47,13 +45,12 @@
     <thead><tr><th>Object</th><th>Details</th></tr></thead>
     <tbody>
       <tr><td>Schema</td><td><code>&lt;catalog&gt;.osa_pcard_review</code> with 6 tables: <code>agencies</code>, <code>agency_budgets</code>, <code>cardholders</code>, <code>merchant_categories</code>, <code>transactions</code>, <code>monthly_statements</code>. Every table and column has a description.</td></tr>
-      <tr><td>Genie Agent</td><td><strong>OSA P-Card Review (Workshop)</strong>, in the folder of the person who runs the notebook, with business definitions, three example queries and five suggested questions.</td></tr>
-      <tr><td>Grants (optional)</td><td>Read access on the schema and Can Run on the agent for <code>share_with_group</code>.</td></tr>
     </tbody>
   </table>
+  <p class="muted small">The notebook does not create any Genie Agents. Attendees create their own in section 2 of the workshop.</p>
 
-  <div class="callout info"><strong>Safe to re-run.</strong> The data uses a fixed seed, so every run produces the same numbers. The notebook only overwrites tables it created itself, and stops if the schema already holds other tables with the same names. The agent's ID is saved on the schema, so a re-run updates that same agent and never touches anyone else's.</div>
-  <div class="callout tip"><strong>Cleaning up afterward:</strong> delete the agent from its folder, then drop the schema with <code>DROP SCHEMA &lt;catalog&gt;.osa_pcard_review CASCADE</code>.</div>
+  <div class="callout info"><strong>Safe to re-run.</strong> The data uses a fixed seed, so every run produces the same numbers. The notebook only overwrites tables it created itself, and stops if the schema already holds other tables with the same names.</div>
+  <div class="callout tip"><strong>Cleaning up afterward:</strong> attendees can delete their own agents. Then drop the schema with <code>DROP SCHEMA &lt;catalog&gt;.osa_pcard_review CASCADE</code>.</div>
   <div class="callout info"><strong>All data is synthetic.</strong> Agencies, cardholders, merchants and dollar amounts are all made up for training. Nothing here is an OSA finding.</div>
 </section>
 
