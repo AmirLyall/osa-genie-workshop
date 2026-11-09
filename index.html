@@ -39,7 +39,7 @@
     <a class="btn ghost" href="#questions">Today's questions</a>
     <a class="btn ghost" href="#cheatsheet">Cheat sheet</a>
   </div>
-  <div class="callout info"><strong>All data is synthetic.</strong> Today's examples use a made-up state purchasing card (P-card) dataset that follows the NC fiscal year
+  <div class="callout info"><strong>All data is synthetic.</strong> Today's examples use a made-up state purchasing card (P-card) dataset of fictional agencies, people and merchants. It follows the NC fiscal year
   (July 1 to June 30). It is built for training only. No figure is real, and nothing here is an OSA finding or an official statistic.</div>
 </div></section>
 
@@ -103,7 +103,7 @@
   <h2>Meet the data</h2>
   <p>The workshop agent sits on one schema of synthetic P-card data covering <strong>FY2025 and FY2026</strong> (July 2024 through June 2026), with about 1,800 cards and 180,000 purchases. Every table and column has a
   plain-English description in Unity Catalog. <strong>Genie reads those descriptions</strong>, which is a big part of why it can turn your words into the right query.</p>
-  <p class="schema">Schema <code>osa_pcard_review</code> (in the catalog your data team chose): a statewide view of purchasing card activity across 12 agencies.</p>
+  <p class="schema">Schema <code>osa_pcard_review</code> (in the catalog your data team chose): a statewide view of purchasing card activity across 12 fictional agencies.</p>
   <table class="tables">
     <thead><tr><th>Table</th><th>Grain</th><th>What's in it</th></tr></thead>
     <tbody>
@@ -136,7 +136,7 @@
       <p class="q">Show monthly P-card spend for FY2026 as a line chart.</p>
       <p class="q">What share of monthly statements were reconciled within 30 days of the statement date, by agency?</p>
       <p class="q">Which cardholders have statements that are still unreconciled after 60 days, and how much do they total?</p>
-      <p class="q">For DOT, list every FY2026 transaction over $2,500 with the merchant and whether a receipt is attached.</p>
+      <p class="q">For DRB, list every FY2026 transaction over $2,500 with the merchant and whether a receipt is attached.</p>
     </div>
     <div class="tab-panel" id="q-perf">
       <p class="q">Which agencies have the highest rate of transactions missing a receipt in FY2026?</p>
@@ -185,7 +185,7 @@
   <p class="goal"><strong>Goal:</strong> have a real conversation with the agent, and learn to <em>check the work</em>, not just read the answer. <span class="time">12:10 · 15 min</span></p>
   <ol class="steps" data-group="lab2">
     <li><label><input type="checkbox" data-id="l2a"> Paste a question from <a href="#questions">your team's tab</a>, or click one of the agent's suggested questions.</label></li>
-    <li><label><input type="checkbox" data-id="l2b"> Ask a <strong>follow-up</strong> that builds on the answer, such as <q>only for DHHS</q> or <q>now split that by quarter</q>. Follow-ups stay in the same thread, so Genie remembers the context.</label></li>
+    <li><label><input type="checkbox" data-id="l2b"> Ask a <strong>follow-up</strong> that builds on the answer, such as <q>only for DCH</q> or <q>now split that by quarter</q>. Follow-ups stay in the same thread, so Genie remembers the context.</label></li>
     <li><label><input type="checkbox" data-id="l2c"> If Genie asks a <strong>clarifying question</strong> (for example, which fiscal year you mean), answer it in plain words.</label></li>
     <li><label><input type="checkbox" data-id="l2d"> Open <strong>Show code</strong> and read the steps. Which tables did it use, which filters, and which time period?</label></li>
     <li><label><input type="checkbox" data-id="l2e"> Ask for a visual: <q>show that as a bar chart</q>. Then change the chart type in the side panel.</label></li>
@@ -206,7 +206,7 @@
   <h3>Agent mode: multi-step research</h3>
   <p>For open-ended questions, switch the chat to <strong>Agent mode</strong>. Genie plans several queries, runs them, and writes up what it found with tables, charts and citations.
   It takes longer than a normal answer. Click <strong>Answer now</strong> to stop early, or <strong>Download PDF</strong> to keep the write-up.</p>
-  <p class="q">Review DHHS P-card activity in FY2026 and summarize the top risks an auditor should test first, with a supporting table for each.</p>
+  <p class="q">Review DCH P-card activity in FY2026 and summarize the top risks an auditor should test first, with a supporting table for each.</p>
   <p class="q">Profile the cardholders with possible split purchases: their agencies, limits, merchants, and how often it happens.</p>
   <h3>Bring your own file</h3>
   <p>You can drop a <strong>CSV or Excel</strong> file into the chat and ask questions about it, alongside the agent's data. Try it with our sample test workpaper.</p>
@@ -247,8 +247,8 @@
       <q>Remember: when I say FY, I mean the NC fiscal year, July 1 to June 30.</q> or <q>Remember that I prefer results sorted by dollar amount, largest first.</q></p></div>
     <div class="card"><h3>Skills <span class="pill">Preview</span></h3><p>A skill is a short instruction file you upload to teach Genie a repeatable procedure, such as your team's steps for a split-purchase test.
       It's in Preview, so it may not be turned on in your workspace yet.</p></div>
-    <div class="card"><h3>Pin and organize</h3><p>Pin the chats you return to, and give them clear names, such as <q>FY26 DOT P-card testing</q>, so you can find them again.</p></div>
-    <div class="card"><h3>Send feedback</h3><p>Mark a good answer <strong>Yes</strong>, or click <strong>Fix it</strong> when it's wrong. <strong>Request review</strong> flags an answer for the data team, who see your feedback and use it to improve the agent.</p></div>
+    <div class="card"><h3>Pin and organize</h3><p>Pin the chats you return to, and give them clear names, such as <q>FY26 DRB P-card testing</q>, so you can find them again.</p></div>
+    <div class="card"><h3>Send feedback</h3><p>Mark a good answer <strong>Yes</strong>, or click <strong>Fix it</strong> when it's wrong. <strong>Request review</strong> flags an answer for the people who manage the agent, so they can see where it needs work.</p></div>
   </div>
 </section>
 
@@ -263,7 +263,7 @@
       <tr><td>Show me card spending.</td><td>Total P-card spend by agency for FY2026.</td></tr>
       <tr><td>Any fraud?</td><td>Transactions on cards after the cardholder's termination date in FY2026.</td></tr>
       <tr><td>Recent problems with receipts.</td><td>Missing-receipt rate by agency for the last 3 months, compared with the same months last year.</td></tr>
-      <tr><td>Why is DOT spending so much?</td><td>DOT P-card spend by merchant category, FY2025 compared with FY2026. Then switch to Agent mode for the "why".</td></tr>
+      <tr><td>Why is DRB spending so much?</td><td>DRB P-card spend by merchant category, FY2025 compared with FY2026. Then switch to Agent mode for the "why".</td></tr>
       <tr><td>One long question with five conditions.</td><td>Start simple, then add one condition per follow-up.</td></tr>
     </tbody>
   </table>
@@ -274,16 +274,15 @@
     <li><strong>Check Show code</strong> before a number goes into a workpaper.</li>
     <li><strong>Normal chat answers what, which and how much.</strong> Use Agent mode for open questions that need several steps.</li>
   </ul>
-  <h3>Your question list</h3>
-  <p>Write down the questions your team gets asked. They tell the data team what the next Genie Agent should be able to answer.
-  When you're done, click <strong>Email my questions</strong> to send them to the workshop team, or download them as a spreadsheet.</p>
-  <p class="muted small">Your questions are kept only in this browser on this computer until you send or download them. Nobody else can see them.</p>
-  <div id="byoq-list"></div>
-  <div class="btnrow">
-    <button class="btn ghost" id="byoq-add" type="button">+ Add a question</button>
-    <button class="btn" id="byoq-email" type="button">Email my questions</button>
-    <button class="btn ghost" id="byoq-export-csv" type="button">Download spreadsheet (.csv)</button>
-  </div>
+  <h3>Capture your own questions</h3>
+  <p>Think of the questions your team gets asked. For each one, try it in Genie and jot down what happened using the template below.
+  Copy it into an email, a document or Teams, and share it with the OSA Data Analytics team. It tells them what the next Genie Agent should be able to answer.</p>
+  <div class="codeblock template"><pre>Question:
+Team (Financial Audit, Performance Audit, Rapid Response, other):
+Who asks it:
+What Genie did (right answer / close, needed rewording / wrong answer / data not available):
+Notes (terms Genie needs defined, data it would need):</pre></div>
+  <p class="muted small">Questions Genie couldn't answer are just as useful as the ones it could. Write them in general terms, without case details, names or cardholder information.</p>
 </section>
 
 <!-- ============================================================ AFTER TODAY -->
@@ -291,7 +290,7 @@
   <h2>After today</h2>
   <div class="cards two">
     <div class="card"><h3>Keep practicing</h3><p>The workshop agent stays available, so keep trying your team's questions on it. Then try the same habits on the Genie Agents your team uses every day.</p></div>
-    <div class="card"><h3>Bring us your questions</h3><p>Use <strong>Email my questions</strong> in <a href="#lab5">section 5</a> to send us your list. Questions Genie couldn't answer are just as useful as the ones it could.</p></div>
+    <div class="card"><h3>Share your questions</h3><p>Use the <a href="#lab5">question template</a> to write up what you tried, and share it with the OSA Data Analytics team.</p></div>
     <div class="card"><h3>Free self-paced training</h3><p>Databricks Academy has free courses on answering business questions with Genie, at your own pace.</p></div>
     <div class="card"><h3>Contact</h3><p>Amir Lyall, Solutions Architect: <a href="mailto:amir.lyall@databricks.com">amir.lyall@databricks.com</a><br>Scott Spofford, Account Executive: <a href="mailto:scott.spofford@databricks.com">scott.spofford@databricks.com</a></p></div>
   </div>
@@ -323,7 +322,7 @@
   <details class="faq"><summary>Genie gave me an empty answer or said it can't find the data</summary><p>Genie only uses data you have permission to see. An empty answer often means your account doesn't have access to that table yet. Ask the data team.</p></details>
   <details class="faq"><summary>My colleague asked the same question and got a different number</summary><p>Check two things. First, open <strong>Show code</strong> on both answers, because a small wording difference can change a filter or a date range. Second, you may have different access: row filters can show each person only the rows they're allowed to see.</p></details>
   <details class="faq"><summary>Can Genie change or delete data?</summary><p>No. Genie answers questions by reading data. Nothing you ask in a chat changes the underlying tables.</p></details>
-  <details class="faq"><summary>Does Genie send our data to an outside model?</summary><p>To write a query, Genie sends your question and the table and column descriptions to the model. The query itself runs inside OSA's Databricks workspace, under your permissions.</p></details>
+  <details class="faq"><summary>Does Genie send our data to an outside model?</summary><p>To write a query, Genie uses your question and the table and column descriptions. The query itself runs inside OSA's Databricks workspace, under your permissions. Which AI models Genie may use is controlled by your workspace administrators, so ask the OSA data team about OSA's settings.</p></details>
   <details class="faq"><summary>The answer looks wrong</summary><p>Read <strong>Show code</strong>, rephrase with the exact measure, slice and time period, or start a new chat. If it's still wrong, click <strong>Fix it</strong> or <strong>Request review</strong> so the data team can correct the agent.</p></details>
   <details class="faq"><summary>My old results are gone</summary><p>Query results are kept for 7 days. The chat stays in your history, so open it and run the question again.</p></details>
   <details class="faq"><summary>Who sees a chat I share?</summary><p>Only the people allowed by the sharing level you pick. By default, the agent's managers can review it. Recipients see it read-only, and they still need access to the data.</p></details>

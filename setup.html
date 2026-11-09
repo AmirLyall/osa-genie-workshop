@@ -52,9 +52,9 @@
     </tbody>
   </table>
 
-  <div class="callout info"><strong>Safe to re-run.</strong> The data uses a fixed seed, so every run produces the same numbers. Tables are overwritten, and the agent is updated in place by title.</div>
+  <div class="callout info"><strong>Safe to re-run.</strong> The data uses a fixed seed, so every run produces the same numbers. The notebook only overwrites tables it created itself, and stops if the schema already holds other tables with the same names. The agent's ID is saved on the schema, so a re-run updates that same agent and never touches anyone else's.</div>
   <div class="callout tip"><strong>Cleaning up afterward:</strong> delete the agent from its folder, then drop the schema with <code>DROP SCHEMA &lt;catalog&gt;.osa_pcard_review CASCADE</code>.</div>
-  <div class="callout info"><strong>All data is synthetic.</strong> Agency names are real, but every cardholder, purchase and dollar amount is made up for training. Nothing here is an OSA finding.</div>
+  <div class="callout info"><strong>All data is synthetic.</strong> Agencies, cardholders, merchants and dollar amounts are all made up for training. Nothing here is an OSA finding.</div>
 </section>
 
 <footer><img src="databricks-logo.svg" alt="Databricks"><span><a href="./">Workshop guide</a> · <a href="facilitator.html">Facilitator guide</a></span></footer>

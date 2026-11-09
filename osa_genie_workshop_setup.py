@@ -58,50 +58,50 @@ def month_end(y, m):
     nxt = date(y + (m == 12), m % 12 + 1, 1)
     return nxt - timedelta(days=1)
 
-AGENCIES = [  # code, name, share of cardholders, missing-receipt rate
-    ("DOT", "Department of Transportation", 0.20, 0.05),
-    ("DHHS", "Department of Health and Human Services", 0.16, 0.07),
-    ("DPS", "Department of Public Safety", 0.10, 0.14),
-    ("DAC", "Department of Adult Correction", 0.08, 0.09),
-    ("DEQ", "Department of Environmental Quality", 0.07, 0.04),
-    ("DNCR", "Department of Natural and Cultural Resources", 0.07, 0.06),
-    ("NCDA", "Department of Agriculture and Consumer Services", 0.06, 0.05),
-    ("DIT", "Department of Information Technology", 0.06, 0.03),
-    ("DOA", "Department of Administration", 0.05, 0.04),
-    ("DOR", "Department of Revenue", 0.05, 0.03),
-    ("DPI", "Department of Public Instruction", 0.05, 0.08),
-    ("DOC", "Department of Commerce", 0.05, 0.06),
+AGENCIES = [  # fictional agencies: code, name, share of cardholders, missing-receipt rate
+    ("DRB", "Department of Roads and Bridges", 0.20, 0.05),
+    ("DCH", "Department of Community Health", 0.16, 0.07),
+    ("DPP", "Department of Public Protection", 0.10, 0.14),
+    ("DRS", "Department of Rehabilitation Services", 0.08, 0.09),
+    ("DLW", "Department of Land and Water", 0.07, 0.04),
+    ("DHA", "Department of Heritage and the Arts", 0.07, 0.06),
+    ("DFF", "Department of Farms and Food", 0.06, 0.05),
+    ("DDS", "Department of Digital Services", 0.06, 0.03),
+    ("DGS", "Department of General Services", 0.05, 0.04),
+    ("DTF", "Department of Taxation and Finance", 0.05, 0.03),
+    ("DLE", "Department of Learning and Education", 0.05, 0.08),
+    ("DED", "Department of Economic Development", 0.05, 0.06),
 ]
 AG_CODES = [a[0] for a in AGENCIES]
 AG_W = [a[2] for a in AGENCIES]
 RECEIPT_MISS = {a[0]: a[3] for a in AGENCIES}
 
 MCCS = [  # mcc, description, group, blocked, typical amount, merchants
-    ("5943", "Office and School Supply Stores", "Office supplies", False, 85, ["Office Depot", "Staples", "Triangle Office Supply"]),
-    ("5111", "Stationery and Office Supplies", "Office supplies", False, 120, ["Uline", "W.B. Mason"]),
-    ("5942", "Book Stores", "Office supplies", False, 60, ["Amazon Marketplace", "NC State Bookstore"]),
-    ("5200", "Home Supply Warehouse Stores", "Facilities and maintenance", False, 180, ["Home Depot", "Lowe's"]),
-    ("5251", "Hardware Stores", "Facilities and maintenance", False, 75, ["Ace Hardware", "Tractor Supply"]),
-    ("5085", "Industrial Supplies", "Facilities and maintenance", False, 340, ["Grainger", "Fastenal", "MSC Industrial"]),
-    ("5541", "Service Stations", "Fuel and vehicles", False, 55, ["Sheetz", "Shell", "Circle K", "Wilco Hess"]),
-    ("7523", "Parking Lots and Garages", "Fuel and vehicles", False, 18, ["Raleigh Downtown Parking", "SP+ Parking"]),
-    ("7011", "Hotels and Lodging", "Travel", False, 210, ["Hampton Inn", "Courtyard by Marriott", "Holiday Inn Express"]),
-    ("4511", "Airlines", "Travel", False, 380, ["Delta Air Lines", "American Airlines"]),
-    ("4121", "Taxi and Rideshare", "Travel", False, 32, ["Uber", "Lyft"]),
-    ("5812", "Restaurants", "Meals", False, 45, ["Local Restaurant", "Catering Works", "Panera Bread"]),
-    ("4816", "Computer Network Services", "Technology", False, 160, ["Zoom", "Microsoft", "Adobe"]),
-    ("5734", "Computer Software Stores", "Technology", False, 420, ["CDW Government", "SHI International"]),
-    ("5047", "Medical and Dental Supplies", "Medical supplies", False, 260, ["Henry Schein", "Medline"]),
-    ("8299", "Schools and Educational Services", "Training", False, 450, ["NC Training Institute", "Coursera"]),
-    ("7399", "Business Services", "Business services", False, 230, ["FedEx Office", "Iron Mountain"]),
-    ("5999", "Miscellaneous Retail", "Other retail", False, 70, ["Walmart", "Target", "Costco"]),
-    ("5813", "Bars and Taverns", "Blocked", True, 65, ["Tobacco Road Taproom", "Fox and Hound"]),
-    ("5921", "Package Stores, Beer, Wine and Liquor", "Blocked", True, 80, ["ABC Store", "Total Wine"]),
-    ("7995", "Betting and Casino Gambling", "Blocked", True, 150, ["Harrah's Cherokee", "Online Gaming Co"]),
-    ("5993", "Cigar Stores and Tobacco", "Blocked", True, 40, ["Smoke Shop"]),
+    ("5943", "Office and School Supply Stores", "Office supplies", False, 85, ["OfficePlus Supply", "Paper and Pen Co", "Triangle Office Supply"]),
+    ("5111", "Stationery and Office Supplies", "Office supplies", False, 120, ["Capital Stationers", "Carolina Business Forms"]),
+    ("5942", "Book Stores", "Office supplies", False, 60, ["Online Marketplace", "Campus Bookstore"]),
+    ("5200", "Home Supply Warehouse Stores", "Facilities and maintenance", False, 180, ["Builders Warehouse", "HomePro Supply"]),
+    ("5251", "Hardware Stores", "Facilities and maintenance", False, 75, ["Main Street Hardware", "Farm and Feed Supply"]),
+    ("5085", "Industrial Supplies", "Facilities and maintenance", False, 340, ["Piedmont Industrial", "Fastener Depot", "MRO Supply Co"]),
+    ("5541", "Service Stations", "Fuel and vehicles", False, 55, ["QuickFuel", "Highway Gas", "Corner Mart Fuel"]),
+    ("7523", "Parking Lots and Garages", "Fuel and vehicles", False, 18, ["City Center Parking", "Garage Park"]),
+    ("7011", "Hotels and Lodging", "Travel", False, 210, ["Capitol Suites Hotel", "Coastal Inn", "Mountain View Lodge"]),
+    ("4511", "Airlines", "Travel", False, 380, ["Southern Air", "Atlantic Airways"]),
+    ("4121", "Taxi and Rideshare", "Travel", False, 32, ["RideNow", "City Cab"]),
+    ("5812", "Restaurants", "Meals", False, 45, ["Local Restaurant", "Catering Works", "Bread and Bowl Cafe"]),
+    ("4816", "Computer Network Services", "Technology", False, 160, ["CloudMeet", "SoftSuite Online", "DesignApps"]),
+    ("5734", "Computer Software Stores", "Technology", False, 420, ["GovTech Software", "Enterprise License Co"]),
+    ("5047", "Medical and Dental Supplies", "Medical supplies", False, 260, ["MedSupply Direct", "Clinic Supply Co"]),
+    ("8299", "Schools and Educational Services", "Training", False, 450, ["Public Service Training Institute", "Online Learning Co"]),
+    ("7399", "Business Services", "Business services", False, 230, ["Print and Ship Center", "Records Storage Co"]),
+    ("5999", "Miscellaneous Retail", "Other retail", False, 70, ["SuperMart", "Value Club", "General Store"]),
+    ("5813", "Bars and Taverns", "Blocked", True, 65, ["Downtown Taproom", "Corner Pub"]),
+    ("5921", "Package Stores, Beer, Wine and Liquor", "Blocked", True, 80, ["Package Store", "Wine and Spirits Outlet"]),
+    ("7995", "Betting and Casino Gambling", "Blocked", True, 150, ["Riverboat Casino", "Online Gaming Co"]),
+    ("5993", "Cigar Stores and Tobacco", "Blocked", True, 40, ["Corner Smoke Shop"]),
     ("6011", "ATM Cash Withdrawal", "Blocked", True, 200, ["ATM Withdrawal"]),
-    ("5094", "Jewelry and Precious Metals", "Blocked", True, 420, ["Jared", "Kay Jewelers"]),
-    ("7997", "Clubs and Country Clubs", "Blocked", True, 300, ["Prestonwood Country Club"]),
+    ("5094", "Jewelry and Precious Metals", "Blocked", True, 420, ["Main Street Jewelers", "Gold and Gem"]),
+    ("7997", "Clubs and Country Clubs", "Blocked", True, 300, ["Lakeside Country Club"]),
 ]
 ALLOWED = [m for m in MCCS if not m[3]]
 BLOCKED = [m for m in MCCS if m[3]]
@@ -151,8 +151,8 @@ def add_tx(c, d, mcc, amount, hour=None):
     if hour is None:
         hour = rng.choices([rng.randint(7, 17), rng.randint(18, 21), rng.choice([22, 23, 0, 1, 2, 3, 4])], [93, 6, 1])[0]
     ts = datetime(d.year, d.month, d.day, hour, rng.randint(0, 59), rng.randint(0, 59))
-    miss = RECEIPT_MISS[c["agency_code"]] * (0.8 if fiscal_year(d) == 2026 and c["agency_code"] in ("DOT", "DIT", "DEQ") else 1.0)
-    miss *= 1.25 if fiscal_year(d) == 2026 and c["agency_code"] in ("DPS", "DPI") else 1.0
+    miss = RECEIPT_MISS[c["agency_code"]] * (0.8 if fiscal_year(d) == 2026 and c["agency_code"] in ("DRB", "DDS", "DLW") else 1.0)
+    miss *= 1.25 if fiscal_year(d) == 2026 and c["agency_code"] in ("DPP", "DLE") else 1.0
     tx.append(dict(card_id=c["card_id"], agency_code=c["agency_code"], transaction_ts=ts, transaction_date=d,
                    fiscal_year=fiscal_year(d), fiscal_quarter=fiscal_quarter(d), merchant_name=rng.choice(mcc[5]), mcc=mcc[0],
                    amount=round(amount, 2), receipt_attached=rng.random() > miss))
@@ -230,11 +230,11 @@ statements = []
 for i, ((cid, y, m), (total, n)) in enumerate(sorted(by_card_month.items()), 1):
     c = card_by_id[cid]; sd = month_end(y, m)
     recent = sd >= date(2026, 5, 1)
-    p_unrec = 0.35 if sd == date(2026, 6, 30) else 0.18 if recent else 0.04 * (1.8 if c["agency_code"] in ("DPS", "DAC") else 1)
+    p_unrec = 0.35 if sd == date(2026, 6, 30) else 0.18 if recent else 0.04 * (1.8 if c["agency_code"] in ("DPP", "DRS") else 1)
     if rng.random() < p_unrec:
         rec, rd, days = False, None, None
     else:
-        days = rng.randint(3, 28) if rng.random() < (0.80 if c["agency_code"] in ("DPS", "DAC", "DPI") else 0.90) else rng.randint(31, 90)
+        days = rng.randint(3, 28) if rng.random() < (0.80 if c["agency_code"] in ("DPP", "DRS", "DLE") else 0.90) else rng.randint(31, 90)
         rd = sd + timedelta(days=days)
         if rd > END:
             rec, rd, days = False, None, None
@@ -248,7 +248,7 @@ for i, ((cid, y, m), (total, n)) in enumerate(sorted(by_card_month.items()), 1):
 spend = {}
 for t in tx:
     spend[(t["agency_code"], t["fiscal_year"])] = spend.get((t["agency_code"], t["fiscal_year"]), 0) + t["amount"]
-over = {"DPS", "DHHS", "DPI"}
+over = {"DPP", "DCH", "DLE"}
 budgets = []
 for code, name, _, _ in AGENCIES:
     for fy in (2025, 2026):
@@ -264,20 +264,32 @@ for code, name, _, _ in AGENCIES:
 
 from pyspark.sql import types as T
 
+MARKER = "osa_genie_workshop"
+sql_str = lambda text: text.replace("\\", "\\\\").replace("'", "\\'")
+
+# Refuse to overwrite tables this notebook didn't create, so pointing it at a busy schema can't destroy real data.
+existing_tables = {r.tableName for r in spark.sql(f"SHOW TABLES IN {FQ}").collect()}
+for name in ["agencies", "agency_budgets", "cardholders", "merchant_categories", "transactions", "monthly_statements"]:
+    if name in existing_tables:
+        props = {r.key: r.value for r in spark.sql(f"SHOW TBLPROPERTIES {FQ}.`{name}`").collect()}
+        if props.get(MARKER) != "true":
+            raise ValueError(f"{CATALOG}.{SCHEMA}.{name} already exists and was not created by this notebook. Pick a different schema.")
+
 def write(name, rows, schema, table_comment, col_comments):
     df = spark.createDataFrame(rows, schema)
     df.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{FQ}.`{name}`")
-    spark.sql(f"COMMENT ON TABLE {FQ}.`{name}` IS '{table_comment}'")
+    spark.sql(f"ALTER TABLE {FQ}.`{name}` SET TBLPROPERTIES ('{MARKER}' = 'true')")
+    spark.sql(f"COMMENT ON TABLE {FQ}.`{name}` IS '{sql_str(table_comment)}'")
     for col, text in col_comments.items():
-        spark.sql(f"ALTER TABLE {FQ}.`{name}` ALTER COLUMN `{col}` COMMENT '{text}'")
+        spark.sql(f"ALTER TABLE {FQ}.`{name}` ALTER COLUMN `{col}` COMMENT '{sql_str(text)}'")
     print(f"  {name}: {df.count():,} rows")
 
-S, D, F, I, B, TS = T.StringType(), T.DateType(), T.DoubleType(), T.IntegerType(), T.BooleanType(), T.TimestampType()
+S, D, F, I, B, TS = T.StringType(), T.DateType(), T.DoubleType(), T.IntegerType(), T.BooleanType(), T.TimestampNTZType()  # local wall-clock time, no timezone shift
 st = lambda *cols: T.StructType([T.StructField(n, t, True) for n, t in cols])
 
 write("agencies", [dict(agency_code=a[0], agency_name=a[1]) for a in AGENCIES], st(("agency_code", S), ("agency_name", S)),
       "State agencies that participate in the P-card program. One row per agency.",
-      {"agency_code": "Short agency code, for example DOT or DHHS. Joins to every other table.",
+      {"agency_code": "Short agency code, for example DRB or DCH. Joins to every other table.",
        "agency_name": "Full agency name."})
 
 write("agency_budgets", budgets, st(("agency_code", S), ("fiscal_year", I), ("pcard_budget", F)),
@@ -443,26 +455,26 @@ space = {
 DESCRIPTION = ("Synthetic NC state purchasing card (P-card) activity for FY2025 and FY2026, for the OSA Genie workshop. "
                "Ask about spend, receipts, reconciliations, budgets, split purchases, terminated cardholders and blocked merchants. Training data only.")
 
-existing = None
-page = None
-while True:
-    resp = api.do("GET", "/api/2.0/genie/spaces", query={"page_size": 100, **({"page_token": page} if page else {})})
-    for s in resp.get("spaces", []):
-        if s.get("title") == AGENT_TITLE:
-            existing = s["space_id"]
-    page = resp.get("next_page_token")
-    if existing or not page:
-        break
+# The agent's ID is saved on the schema, so re-runs update this notebook's own agent and never touch anyone else's.
+existing = (w.schemas.get(f"{CATALOG}.{SCHEMA}").properties or {}).get("genie_space_id")
+if existing:
+    try:
+        api.do("GET", f"/api/2.0/genie/spaces/{existing}")
+    except Exception:
+        print(f"Saved agent {existing} no longer exists or isn't accessible. Creating a new one.")
+        existing = None
 
 body = {"title": AGENT_TITLE, "description": DESCRIPTION, "warehouse_id": WAREHOUSE_ID, "serialized_space": json.dumps(space)}
 if existing:
-    api.do("PATCH", f"/api/2.0/genie/spaces/{existing}", body=body)
+    # Leave the title alone on update, so a rename in the UI isn't undone and names never collide.
+    api.do("PATCH", f"/api/2.0/genie/spaces/{existing}", body={k: v for k, v in body.items() if k != "title"})
     SPACE_ID = existing
     print(f"Updated Genie Agent: {AGENT_TITLE}")
 else:
     me = w.current_user.me().user_name
     body["parent_path"] = f"/Workspace/Users/{me}"
     SPACE_ID = api.do("POST", "/api/2.0/genie/spaces", body=body)["space_id"]
+    spark.sql(f"ALTER SCHEMA {FQ} SET DBPROPERTIES ('genie_space_id' = '{SPACE_ID}')")
     print(f"Created Genie Agent: {AGENT_TITLE}")
 host = w.config.host.rstrip("/")
 print(f"Open it: {host}/genie/rooms/{SPACE_ID}")
@@ -476,7 +488,10 @@ print(f"Open it: {host}/genie/rooms/{SPACE_ID}")
 if SHARE_GROUP:
     for stmt in [f"GRANT USE CATALOG ON CATALOG `{CATALOG}` TO `{SHARE_GROUP}`",
                  f"GRANT USE SCHEMA, SELECT ON SCHEMA {FQ} TO `{SHARE_GROUP}`"]:
-        spark.sql(stmt); print(stmt)
+        try:
+            spark.sql(stmt); print(stmt)
+        except Exception as e:
+            print(f"Could not run: {stmt}\n  {str(e).splitlines()[0]}\n  Ask a catalog owner to run it.")
     try:
         api.do("PATCH", f"/api/2.0/permissions/genie/{SPACE_ID}",
                body={"access_control_list": [{"group_name": SHARE_GROUP, "permission_level": "CAN_RUN"}]})
@@ -503,5 +518,7 @@ checks = {
     "Unreconciled statements": f"SELECT COUNT(*) FROM {q('monthly_statements')} WHERE NOT reconciled",
 }
 for label, sql in checks.items():
-    print(f"  {label}: {spark.sql(sql).collect()[0][0]:,}")
+    value = spark.sql(sql).collect()[0][0]
+    print(f"  {label}: {value:,}")
+    assert value and value > 0, f"Self-test failed: {label} returned {value}"
 print("\nSetup complete.")
