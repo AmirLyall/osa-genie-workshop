@@ -5,7 +5,7 @@ One-hour Genie lunch and learn for business users at the NC Office of the State 
 | File | What it is |
 |---|---|
 | `index.html`, `styles.css`, `app.js` | The workshop guide attendees follow. Static, so open `index.html` directly or host it anywhere. |
-| `setup.html` | Setup steps for the OSA data team. |
+| `setup.html` | Setup steps for OSA's Databricks workspace administrators. |
 | `facilitator.html` | Presenter prep and run of show. |
 | `osa_genie_workshop_setup.py` | Databricks notebook (SOURCE format). Loads `<catalog>.osa_pcard_review` (6 synthetic tables with descriptions). Access grants are done by hand, see `setup.html`. Attendees create their own Genie Agents from these tables during the workshop. |
 | `osa_pcard_test_sample.csv` | 60-row synthetic test workpaper for the file-upload demo. |

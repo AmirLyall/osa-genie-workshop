@@ -21,7 +21,7 @@
   <h2>Facilitator guide</h2>
   <details class="faq" open><summary>Before the session</summary>
   <ol>
-    <li>Make sure the workshop tables are loaded in the workspace you'll present from. Run <a href="osa_genie_workshop_setup.py" download><code>osa_genie_workshop_setup.py</code></a> there (see <a href="setup.html">Setup for the data team</a>). For attendees to follow along, the data team runs it in their workspace and grants the attendees' group access.</li>
+    <li>Make sure the workshop tables are loaded in the workspace you'll present from. Run <a href="osa_genie_workshop_setup.py" download><code>osa_genie_workshop_setup.py</code></a> there (see <a href="setup.html">Setup for Databricks workspace administrators</a>). For attendees to follow along, OSA's Databricks workspace administrators run it in their workspace and grants the attendees' group access.</li>
     <li>Do a dry run <strong>with an attendee-like account</strong>, not an admin: find the tables in Catalog, create an agent from Genie Agents, ask a question, and upload <code>osa_pcard_test_sample.csv</code>. Accounts without the Databricks SQL entitlement can't create agents, and consumer-only accounts can't upload files.</li>
     <li>Confirm Agent mode is available, a schedule can send email, and whether Skills (Preview) is turned on. If it isn't, show Skills on a slide only.</li>
     <li>If attendees can't create agents in their workspace, present from yours and have them watch. The guide still works as a take-home.</li>
@@ -32,13 +32,13 @@
     <thead><tr><th>Time</th><th>Block</th><th>Show and say</th></tr></thead>
     <tbody>
       <tr><td class="slot">12:00 (10)</td><td>Genie One, Agents, trust</td><td>Home page tour and a search. Make three points: it only sees what you can see, it shows its work, and it can be wrong, so verify.</td></tr>
-      <tr><td class="slot">12:10 (10)</td><td>Create your agent</td><td>Genie Agents, New, pick the six tables, Create. Show the suggestions Genie offers, rename the agent, and ask a first question. Walk the "how the data team makes an agent smarter" table, and ask the room what terms or joins they would teach it.</td></tr>
+      <tr><td class="slot">12:10 (10)</td><td>Create your agent</td><td>Genie Agents, New, pick the six tables, Create. Show the suggestions Genie offers, rename the agent, and ask a first question. Walk the "how Databricks workspace administrators make an agent smarter" table, and ask the room what terms or joins they would teach it.</td></tr>
       <tr><td class="slot">12:20 (15)</td><td>Navigate and ask</td><td>Explain Agent mode (the default) and Chat mode, then run a Financial Audit question in each and compare. Do two follow-ups, open Show code and read it aloud like a workpaper review. Then a chart edited with the pencil icon, the download option, renaming the chat in Past chats, and Share.</td></tr>
       <tr><td class="slot">12:35 (15)</td><td>Files, schedules, customizing</td><td>Switch back to Genie One and start a new chat. Upload the test sample and summarize the exceptions. Create the Investigations schedule manually. Save the FY memory and show it applied in a new chat. If Skills is turned on, create the split-purchase skill from the prompt and run it with /pcard-split-purchase-test. Briefly show feedback.</td></tr>
       <tr><td class="slot">12:50 (10)</td><td>Best practices and Q&amp;A</td><td>Walk the rewrite table and the question template, then take open questions.</td></tr>
     </tbody>
   </table></details>
-  <details class="faq"><summary>Keep out of scope today</summary><p>Hands-on tuning (writing instructions, example SQL, trusted assets, benchmarks) and Genie Workbench. Explain what each lever does and what business users can contribute, but leave the how-to for the data team's session.
+  <details class="faq"><summary>Keep out of scope today</summary><p>Hands-on tuning (writing instructions, example SQL, trusted assets, benchmarks) and Genie Workbench. Explain what each lever does and what business users can contribute, but leave the how-to for the session with OSA's Databricks workspace administrators.
   If someone asks how to fix a wrong answer, the business-user answer is to define the term in the question or save it as a memory.</p></details>
   <details class="faq"><summary>If something breaks</summary><p>If an answer is slow, move to the next block and come back to it. If creating, uploading or scheduling is blocked by an account setting, switch to your own screen and say so plainly.
   If the agent gives a wrong answer live, use it: open Show code, find the issue, and rephrase with a clearer definition. That's the lesson.</p></details>

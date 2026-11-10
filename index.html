@@ -89,13 +89,13 @@
   <p>You can simply watch today. If you'd like to follow along, open Databricks in a second window or on a second screen.</p>
   <ol class="steps" data-group="start">
     <li><label><input type="checkbox" data-id="s1"> Sign in to the OSA Databricks workspace the way you normally do.</label></li>
-    <li><label><input type="checkbox" data-id="s2"> Click <strong>Catalog</strong> in the sidebar and find the <code>osa_pcard_review</code> schema. The data team will tell you which catalog it's in. You should see six tables.</label></li>
+    <li><label><input type="checkbox" data-id="s2"> Click <strong>Catalog</strong> in the sidebar and find the <code>osa_pcard_review</code> schema. Your Databricks workspace administrators will tell you which catalog it's in. You should see six tables.</label></li>
     <li><label><input type="checkbox" data-id="s3"> Check that you can see <strong>Genie Agents</strong> in the sidebar. That's where you'll create your agent in section 2.</label></li>
     <li><label><input type="checkbox" data-id="s4"> Open <strong>Genie One</strong> from the <strong>app switcher</strong> in the upper right, or add <code>/one</code> to the end of your workspace address. Keep that tab open too.</label></li>
   </ol>
-  <div class="callout info"><strong>What's ready before you arrive:</strong> the OSA data team has loaded the workshop tables and given you read access. Everything else, including the Genie Agent, you'll build yourself during the session.</div>
+  <div class="callout info"><strong>What's ready before you arrive:</strong> OSA's Databricks workspace administrators have loaded the workshop tables and given you read access. Everything else, including the Genie Agent, you'll build yourself during the session.</div>
   <div class="callout tip"><strong>Can't see the schema, or there's no Genie Agents item in your sidebar?</strong> Your account may be missing table access or the Databricks SQL entitlement.
-  Keep watching on the shared screen, and let the data team know after the session.</div>
+  Keep watching on the shared screen, and let your Databricks workspace administrators know after the session.</div>
 </section>
 
 <!-- ============================================================ DATA -->
@@ -103,7 +103,7 @@
   <h2>Meet the data</h2>
   <p>The workshop uses one schema of synthetic P-card data covering <strong>FY2025 and FY2026</strong> (July 2024 through June 2026), with about 1,800 cards and 180,000 purchases. Every table and column has a
   plain-English description in Unity Catalog. <strong>Genie reads those descriptions</strong>, which is a big part of why it can turn your words into the right query.</p>
-  <p class="schema">Schema <code>osa_pcard_review</code>, in the catalog the data team chose: a statewide view of purchasing card activity across 12 fictional agencies.</p>
+  <p class="schema">Schema <code>osa_pcard_review</code>, in the catalog your Databricks workspace administrators chose: a statewide view of purchasing card activity across 12 fictional agencies.</p>
   <table class="tables">
     <thead><tr><th>Table</th><th>Grain</th><th>What's in it</th></tr></thead>
     <tbody>
@@ -165,7 +165,7 @@
     <div class="card"><h3>Genie One</h3><p>Your home page for data at OSA (it used to be called Databricks One). The sidebar has <strong>New chat</strong>, <strong>Agents</strong>, <strong>Discover</strong>,
     <strong>My stuff</strong>, <strong>Schedules</strong>, <strong>Customizations</strong> and <strong>Search chats</strong>.</p></div>
     <div class="card"><h3>Genie Agents</h3><p>A chat focused on one subject, such as P-card activity, that answers questions from a set of tables you choose. Genie Agents used to be called <em>Genie spaces</em>.
-    Data teams usually add definitions and examples so the agent speaks your language. Today you'll start from just the tables.</p></div>
+    Databricks workspace administrators usually add definitions and examples so the agent speaks your language. Today you'll start from just the tables.</p></div>
   </div>
   <ol class="steps" data-group="lab1">
     <li><label><input type="checkbox" data-id="l1a"> Look around the Genie One sidebar: <strong>Agents</strong>, <strong>Discover</strong>, <strong>My stuff</strong>, <strong>Schedules</strong> and <strong>Customizations</strong>.</label></li>
@@ -193,9 +193,9 @@
     <li><label><input type="checkbox" data-id="l2e"> Ask a first question to make sure it works:</label>
       <p class="q">What data can you answer questions about?</p></li>
   </ol>
-  <div class="callout tip"><strong>Error about a warehouse?</strong> Every agent needs a SQL warehouse to run its queries. Open <strong>Configure</strong>, then <strong>Settings</strong>, and pick one under <strong>Default warehouse</strong>. If the list is empty, ask the data team for access.</div>
-  <h3>How the data team makes an agent smarter, and how you can help</h3>
-  <p>A new agent only knows what's in the tables. The data team has several ways to teach it more. They don't know your work the way you do,
+  <div class="callout tip"><strong>Error about a warehouse?</strong> Every agent needs a SQL warehouse to run its queries. Open <strong>Configure</strong>, then <strong>Settings</strong>, and pick one under <strong>Default warehouse</strong>. If the list is empty, ask your Databricks workspace administrators for access.</div>
+  <h3>How Databricks workspace administrators make an agent smarter, and how you can help</h3>
+  <p>A new agent only knows what's in the tables. Your Databricks workspace administrators have several ways to teach it more. They don't know your work the way you do,
   so the most useful thing you can bring them is the knowledge behind each one.</p>
   <div class="layers" role="figure" aria-label="Layers of business logic in a Genie Agent, from least to most reliable">
     <p class="headline">Lower layers are more deterministic. Every piece of business logic should live as far down as possible.</p>
@@ -213,7 +213,7 @@
     </div>
   </div>
   <table class="toolbox">
-    <thead><tr><th>What the data team can add</th><th>What it does</th><th>What you can tell them</th></tr></thead>
+    <thead><tr><th>What administrators can add</th><th>What it does</th><th>What you can tell them</th></tr></thead>
     <tbody>
       <tr><td>Table and column descriptions</td><td>Explain what each field means, in plain English.</td><td>What a field really means in practice, and any quirks, such as dates that are entered late.</td></tr>
       <tr><td>Instructions</td><td>Define the terms and rules Genie should always follow.</td><td>Your team's vocabulary: what counts as a split purchase, a late reconciliation, or "this fiscal year".</td></tr>
@@ -223,7 +223,7 @@
       <tr><td>Test questions</td><td>A list of questions with known right answers, rerun after every change.</td><td>Questions where you already know the answer, so the team can check Genie gets it right.</td></tr>
     </tbody>
   </table>
-  <div class="callout info"><strong>Your feedback is the starting point.</strong> When Genie misreads a term or joins the wrong tables, note it in the <a href="#question-template">question template</a> and share it with the data team. That's exactly what they use to tune the agent.</div>
+  <div class="callout info"><strong>Your feedback is the starting point.</strong> When Genie misreads a term or joins the wrong tables, note it in the <a href="#question-template">question template</a> and share it with your Databricks workspace administrators. That's exactly what they use to tune the agent.</div>
   <div class="callout info"><strong>Your agent is yours.</strong> You own it, so you can rename it, share it with a colleague, or delete it. It only ever sees data you already have permission to read.</div>
 </section>
 
@@ -274,9 +274,9 @@
       <p class="q">Summarize the exceptions in this test sample by agency: missing receipts, missing approvals and undocumented business purpose.</p>
       <p class="q">Which sampled items failed more than one test? Show them in a table sorted by amount.</p></li>
   </ol>
-  <div class="callout tip"><strong>No + button?</strong> File upload isn't available to every account type, or in the mobile app. Watch the demo and ask the data team about access.</div>
+  <div class="callout tip"><strong>No + button?</strong> File upload isn't available to every account type, or in the mobile app. Watch the demo and ask your Databricks workspace administrators about access.</div>
   <div class="callout info"><strong>Working in Excel?</strong> Genie One is also built into the Azure Databricks Excel Add-in. You can ask questions about OSA's Databricks data from inside Excel and import the answers as rows and columns.
-  It answers from Databricks data, not from the spreadsheet you have open. The add-in has to be set up first, so ask the data team. <a href="https://learn.microsoft.com/en-us/azure/databricks/integrations/excel/genie" target="_blank" rel="noopener">Learn more</a></div>
+  It answers from Databricks data, not from the spreadsheet you have open. The add-in has to be set up first, so ask your Databricks workspace administrators. <a href="https://learn.microsoft.com/en-us/azure/databricks/integrations/excel/genie" target="_blank" rel="noopener">Learn more</a></div>
   <h3>Schedules</h3>
   <p>A scheduled task asks a question for you on a set schedule, posts the answer to a chat thread, and can email you the results with a PDF attached.</p>
   <ol class="steps" data-group="lab4b">
@@ -383,17 +383,17 @@ Notes (terms Genie needs defined, data it would need):</pre></div>
 <!-- ============================================================ TROUBLESHOOTING -->
 <section id="troubleshooting">
   <h2>Troubleshooting &amp; FAQ</h2>
-  <details class="faq"><summary>Genie gave me an empty answer or said it can't find the data</summary><p>Genie only uses data you have permission to see. An empty answer often means your account doesn't have access to that table yet. Ask the data team.</p></details>
-  <details class="faq"><summary>I can't create an agent, or there's no Genie Agents item in my sidebar</summary><p>Creating an agent needs the Databricks SQL entitlement, access to a SQL warehouse, and read access to the tables. Accounts that only use Genie One can't create agents. Ask the data team, and watch the shared screen in the meantime.</p></details>
+  <details class="faq"><summary>Genie gave me an empty answer or said it can't find the data</summary><p>Genie only uses data you have permission to see. An empty answer often means your account doesn't have access to that table yet. Ask your Databricks workspace administrators.</p></details>
+  <details class="faq"><summary>I can't create an agent, or there's no Genie Agents item in my sidebar</summary><p>Creating an agent needs the Databricks SQL entitlement, access to a SQL warehouse, and read access to the tables. Accounts that only use Genie One can't create agents. Ask your Databricks workspace administrators, and watch the shared screen in the meantime.</p></details>
   <details class="faq"><summary>My colleague asked the same question and got a different number</summary><p>Check two things. First, open <strong>Show code</strong> on both answers, because a small wording difference can change a filter or a date range. Second, you may have different access: row filters can show each person only the rows they're allowed to see.</p></details>
   <details class="faq"><summary>Can Genie change or delete data?</summary><p>No. Genie answers questions by reading data. Nothing you ask in a chat changes the underlying tables.</p></details>
-  <details class="faq"><summary>Does Genie send our data to an outside model?</summary><p>To write a query, Genie uses your question and the table and column descriptions. The query itself runs inside OSA's Databricks workspace, under your permissions. Which AI models Genie may use is controlled by your workspace administrators, so ask the OSA data team about OSA's settings.</p></details>
-  <details class="faq"><summary>The answer looks wrong</summary><p>Read <strong>Show code</strong>, rephrase with the exact measure, slice and time period, or start a new chat. If the agent keeps misreading a term, define it in your question or save it as a memory. On agents the data team manages, click <strong>Fix it</strong> or <strong>Request review</strong> so they can correct it.</p></details>
+  <details class="faq"><summary>Does Genie send our data to an outside model?</summary><p>To write a query, Genie uses your question and the table and column descriptions. The query itself runs inside OSA's Databricks workspace, under your permissions. Which AI models Genie may use is controlled by your Databricks workspace administrators, so ask them about OSA's settings.</p></details>
+  <details class="faq"><summary>The answer looks wrong</summary><p>Read <strong>Show code</strong>, rephrase with the exact measure, slice and time period, or start a new chat. If the agent keeps misreading a term, define it in your question or save it as a memory. On agents your Databricks workspace administrators manage, click <strong>Fix it</strong> or <strong>Request review</strong> so they can correct it.</p></details>
   <details class="faq"><summary>My old results are gone</summary><p>Query results are kept for 7 days. The chat stays in your history, so open it and run the question again.</p></details>
   <details class="faq"><summary>Who sees a chat I share?</summary><p>Only the people allowed by the sharing level you pick. Recipients see it read-only, and they still need access to the data.</p></details>
 </section>
 
-<footer><img src="databricks-logo.svg" alt="Databricks"><span>NC Office of the State Auditor · Genie Workshop · Tue, Nov 10, 2026 · <a href="setup.html">Setup for the data team</a> · <a href="facilitator.html">Facilitator guide</a> · Synthetic data for training purposes only. Not an OSA finding or an official statistic of the State of North Carolina.</span></footer>
+<footer><img src="databricks-logo.svg" alt="Databricks"><span>NC Office of the State Auditor · Genie Workshop · Tue, Nov 10, 2026 · <a href="setup.html">Setup for Databricks workspace administrators</a> · <a href="facilitator.html">Facilitator guide</a> · Synthetic data for training purposes only. Not an OSA finding or an official statistic of the State of North Carolina.</span></footer>
 </main>
 </div>
 
