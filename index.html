@@ -270,10 +270,10 @@
   <ol class="steps" data-group="lab4">
     <li><label><input type="checkbox" data-id="l4a"> Download <a href="osa_pcard_test_sample.csv" download><code>osa_pcard_test_sample.csv</code></a>: 60 sampled transactions with test results.</label></li>
     <li><label><input type="checkbox" data-id="l4b"> In your new Genie One chat, click the <strong>+</strong> in the message box, choose <strong>Add files</strong>, and pick the file. You can also drag it in.</label></li>
-    <li><label><input type="checkbox" data-id="l4c"> With the file attached, ask about it:</label></li>
+    <li><label><input type="checkbox" data-id="l4c"> With the file attached, ask about it:</label>
+      <p class="q">Summarize the exceptions in this test sample by agency: missing receipts, missing approvals and undocumented business purpose.</p>
+      <p class="q">Which sampled items failed more than one test? Show them in a table sorted by amount.</p></li>
   </ol>
-  <p class="q">Summarize the exceptions in this test sample by agency: missing receipts, missing approvals and undocumented business purpose.</p>
-  <p class="q">Which sampled items failed more than one test? Show them in a table sorted by amount.</p>
   <div class="callout tip"><strong>No + button?</strong> File upload isn't available to every account type, or in the mobile app. Watch the demo and ask the data team about access.</div>
   <div class="callout info"><strong>Working in Excel?</strong> Genie One is also built into the Azure Databricks Excel Add-in. You can ask questions about OSA's Databricks data from inside Excel and import the answers as rows and columns.
   It answers from Databricks data, not from the spreadsheet you have open. The add-in has to be set up first, so ask the data team. <a href="https://learn.microsoft.com/en-us/azure/databricks/integrations/excel/genie" target="_blank" rel="noopener">Learn more</a></div>
@@ -283,10 +283,8 @@
     <li><label><input type="checkbox" data-id="l4d"> In the Genie One sidebar, click <strong>Schedules</strong>. Use the drop-down next to <strong>Create in chat</strong> and choose <strong>Create manually</strong>.</label></li>
     <li><label><input type="checkbox" data-id="l4e"> Paste this as the title:</label>
       <p class="q">Blocked merchant and post-termination P-card transactions</p></li>
-    <li><label><input type="checkbox" data-id="l4e2"> Then paste this as the instructions:</label></li>
-  </ol>
-  <p class="q">Using my P-card agent, list transactions from the most recent 7 days in the data that were at blocked merchant categories or made after the cardholder's termination date. Include agency, cardholder, merchant and amount.</p>
-  <ol class="steps" data-group="lab4c">
+    <li><label><input type="checkbox" data-id="l4e2"> Then paste this as the instructions:</label>
+      <p class="q">Using my P-card agent, list transactions from the most recent 7 days in the data that were at blocked merchant categories or made after the cardholder's termination date. Include agency, cardholder, merchant and amount.</p></li>
     <li><label><input type="checkbox" data-id="l4f"> Set the schedule and timezone, then click <strong>Create</strong>. You can also just describe the task in a chat and Genie will set it up for you.</label></li>
   </ol>
   <p class="muted small">The workshop data stops on June 30, 2026, so this task returns the same rows each time. On live data, each run picks up new activity.</p>
