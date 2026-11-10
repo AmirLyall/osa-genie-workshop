@@ -184,10 +184,25 @@
   <ol class="steps" data-group="lab2">
     <li><label><input type="checkbox" data-id="l2a"> In the workspace sidebar, click <strong>Genie Agents</strong>, then <strong>New</strong> in the upper right.</label></li>
     <li><label><input type="checkbox" data-id="l2b"> Choose the data: browse to the <code>osa_pcard_review</code> schema and select all six tables. Then click <strong>Create</strong>.</label></li>
-    <li><label><input type="checkbox" data-id="l2c"> Genie may offer suggestions, such as table descriptions or example queries. Skip them for today. Tuning an agent is covered in a separate session for the data team.</label></li>
+    <li><label><input type="checkbox" data-id="l2c"> Genie may offer suggestions, such as table descriptions or example queries. Read through them: they're a preview of how an agent gets better.</label></li>
     <li><label><input type="checkbox" data-id="l2d"> Rename the agent so you can find it later, for example <q>P-Card Review (your name)</q>.</label></li>
     <li><label><input type="checkbox" data-id="l2e"> Ask a first question to make sure it works: <q>What data can you answer questions about?</q></label></li>
   </ol>
+  <h3>How the data team makes an agent smarter, and how you can help</h3>
+  <p>A new agent only knows what's in the tables. The data team has several ways to teach it more. They don't know your work the way you do,
+  so the most useful thing you can bring them is the knowledge behind each one.</p>
+  <table class="toolbox">
+    <thead><tr><th>What the data team can add</th><th>What it does</th><th>What you can tell them</th></tr></thead>
+    <tbody>
+      <tr><td>Table and column descriptions</td><td>Explain what each field means, in plain English.</td><td>What a field really means in practice, and any quirks, such as dates that are entered late.</td></tr>
+      <tr><td>Instructions</td><td>Define the terms and rules Genie should always follow.</td><td>Your team's vocabulary: what counts as a split purchase, a late reconciliation, or "this fiscal year".</td></tr>
+      <tr><td>Example questions with answers</td><td>Show Genie the right way to answer a common question.</td><td>The questions you ask most, and how you'd calculate the answer by hand.</td></tr>
+      <tr><td>Table relationships</td><td>Tell Genie how tables connect, so it joins them correctly.</td><td>Which records go together, for example that cardholders link to purchases by card.</td></tr>
+      <tr><td>Reviewed queries and shared metrics</td><td>Lock in official calculations so every answer uses the same definition.</td><td>The numbers that must always match a report, like a receipt compliance rate.</td></tr>
+      <tr><td>Test questions</td><td>A list of questions with known right answers, rerun after every change.</td><td>Questions where you already know the answer, so the team can check Genie gets it right.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout info"><strong>Your feedback is the starting point.</strong> When Genie misreads a term or joins the wrong tables, note it in the <a href="#lab5">question template</a> and share it with the data team. That's exactly what they use to tune the agent.</div>
   <div class="callout tip"><strong>Error about a warehouse?</strong> Every agent needs a SQL warehouse to run its queries. Open <strong>Configure</strong>, then <strong>Settings</strong>, and pick one under <strong>Default warehouse</strong>. If the list is empty, ask the data team for access.</div>
   <div class="callout info"><strong>Your agent is yours.</strong> You own it, so you can rename it, share it with a colleague, or delete it. It only ever sees data you already have permission to read.</div>
 </section>
