@@ -190,6 +190,7 @@
     <li><label><input type="checkbox" data-id="l2e"> Ask a first question to make sure it works:</label>
       <p class="q">What data can you answer questions about?</p></li>
   </ol>
+  <div class="callout tip"><strong>Error about a warehouse?</strong> Every agent needs a SQL warehouse to run its queries. Open <strong>Configure</strong>, then <strong>Settings</strong>, and pick one under <strong>Default warehouse</strong>. If the list is empty, ask the data team for access.</div>
   <h3>How the data team makes an agent smarter, and how you can help</h3>
   <p>A new agent only knows what's in the tables. The data team has several ways to teach it more. They don't know your work the way you do,
   so the most useful thing you can bring them is the knowledge behind each one.</p>
@@ -220,7 +221,6 @@
     </tbody>
   </table>
   <div class="callout info"><strong>Your feedback is the starting point.</strong> When Genie misreads a term or joins the wrong tables, note it in the <a href="#lab5">question template</a> and share it with the data team. That's exactly what they use to tune the agent.</div>
-  <div class="callout tip"><strong>Error about a warehouse?</strong> Every agent needs a SQL warehouse to run its queries. Open <strong>Configure</strong>, then <strong>Settings</strong>, and pick one under <strong>Default warehouse</strong>. If the list is empty, ask the data team for access.</div>
   <div class="callout info"><strong>Your agent is yours.</strong> You own it, so you can rename it, share it with a colleague, or delete it. It only ever sees data you already have permission to read.</div>
 </section>
 
@@ -230,10 +230,13 @@
   <p class="goal"><strong>Goal:</strong> have a real conversation with your agent, and learn to <em>check the work</em>, not just read the answer. <span class="time">12:20 · 15 min</span></p>
   <ol class="steps" data-group="lab3">
     <li><label><input type="checkbox" data-id="l3a"> Paste a question from <a href="#questions">your team's tab</a>.</label></li>
-    <li><label><input type="checkbox" data-id="l3b"> Ask a <strong>follow-up</strong> that builds on the answer, such as <q>only for agency DCH</q> or <q>now split that by quarter</q>. Follow-ups stay in the same thread, so Genie remembers the context.</label></li>
+    <li><label><input type="checkbox" data-id="l3b"> Ask a <strong>follow-up</strong> that builds on the answer. Follow-ups stay in the same thread, so Genie remembers the context. Try one of these:</label>
+      <p class="q">Only for agency DCH</p>
+      <p class="q">Now split that by quarter</p></li>
     <li><label><input type="checkbox" data-id="l3c"> If Genie asks a <strong>clarifying question</strong>, answer it in plain words.</label></li>
     <li><label><input type="checkbox" data-id="l3d"> Open <strong>Show code</strong> and read the steps. Which tables did it use, which filters, and which time period?</label></li>
-    <li><label><input type="checkbox" data-id="l3e"> Ask for a visual: <q>show that as a bar chart</q>. Then change the chart type in the side panel.</label></li>
+    <li><label><input type="checkbox" data-id="l3e"> Ask for a visual, then change the chart type in the side panel:</label>
+      <p class="q">Show that as a bar chart</p></li>
     <li><label><input type="checkbox" data-id="l3f"> Use the <strong>pencil icon</strong> to edit an earlier question and run it again.</label></li>
     <li><label><input type="checkbox" data-id="l3g"> <strong>Download</strong> a result as CSV for your workpaper, or the chart as PNG.</label></li>
     <li><label><input type="checkbox" data-id="l3h"> Find the chat again with <strong>Search chats</strong> in the sidebar, then rename it and <strong>pin</strong> it.</label></li>
@@ -279,11 +282,13 @@
   </div>
   <h3>Make it yours</h3>
   <div class="cards two">
-    <div class="card"><h3>Memory</h3><p>Tell Genie something once and it applies it in later chats. Try:
-      <q>Remember: when I say FY, I mean the NC fiscal year, July 1 to June 30.</q> or <q>Remember that I prefer results sorted by dollar amount, largest first.</q></p></div>
+    <div class="card"><h3>Memory</h3><p>Tell Genie something once and it applies it in later chats. Try:</p>
+      <p class="q">Remember: when I say FY, I mean the NC fiscal year, July 1 to June 30.</p>
+      <p class="q">Remember that I prefer results sorted by dollar amount, largest first.</p></div>
     <div class="card"><h3>Skills <span class="pill">Preview</span></h3><p>A skill is a short instruction file you upload to teach Genie a repeatable procedure, such as your team's steps for a split-purchase test.
       It's in Preview, so it may not be turned on in your workspace yet.</p></div>
-    <div class="card"><h3>Pin and organize</h3><p>Pin the chats you return to, and give them clear names, such as <q>FY26 DRB P-card testing</q>, so you can find them again.</p></div>
+    <div class="card"><h3>Pin and organize</h3><p>Pin the chats you return to, and give them clear names so you can find them again, for example:</p>
+      <p class="q">FY26 DRB P-card testing</p></div>
     <div class="card"><h3>Send feedback</h3><p>Mark a good answer <strong>Yes</strong>, or click <strong>Fix it</strong> when it's wrong. On an agent someone else manages, <strong>Request review</strong> flags the answer for them so they can see where it needs work.</p></div>
   </div>
 </section>
@@ -296,10 +301,10 @@
   <table class="toolbox pair">
     <thead><tr><th>Instead of</th><th>Try</th></tr></thead>
     <tbody>
-      <tr><td>Show me card spending.</td><td>Total P-card spend by agency for FY2026.</td></tr>
-      <tr><td>Any fraud?</td><td>Transactions on cards after the cardholder's termination date in FY2026.</td></tr>
-      <tr><td>Recent problems with receipts.</td><td>Missing-receipt rate by agency for the last 3 months, compared with the same months last year.</td></tr>
-      <tr><td>Why is DRB spending so much?</td><td>DRB P-card spend by merchant category, FY2025 compared with FY2026. Then switch to Agent mode for the "why".</td></tr>
+      <tr><td>Show me card spending.</td><td><p class="q">Total P-card spend by agency for fiscal year 2026.</p></td></tr>
+      <tr><td>Any fraud?</td><td><p class="q">Transactions on cards after the cardholder's termination date in fiscal year 2026.</p></td></tr>
+      <tr><td>Recent problems with receipts.</td><td><p class="q">Missing-receipt rate by agency for April to June 2026, compared with April to June 2025.</p></td></tr>
+      <tr><td>Why is DRB spending so much?</td><td><p class="q">DRB P-card spend by merchant category group, fiscal year 2025 compared with fiscal year 2026.</p>Then switch to Agent mode for the "why".</td></tr>
       <tr><td>One long question with five conditions.</td><td>Start simple, then add one condition per follow-up.</td></tr>
     </tbody>
   </table>
@@ -340,7 +345,7 @@ Notes (terms Genie needs defined, data it would need):</pre></div>
       <li>Measure, slice and time: <q>receipt rate <em>by agency</em> <em>for Q1 FY2026</em></q>.</li>
       <li>Build up with follow-ups instead of one long question.</li>
       <li>New topic, new chat.</li>
-      <li>Ask Genie to <q>explain how you calculated this</q>.</li>
+      <li>Ask Genie to explain itself: <p class="q">Explain how you calculated this.</p></li>
       <li>Agent mode for open questions; normal chat for quick facts.</li></ul></div>
     <div class="card"><h3>Where things are</h3><ul>
       <li><strong>Genie One:</strong> app switcher, upper right.</li>
