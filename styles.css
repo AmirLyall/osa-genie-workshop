@@ -314,3 +314,22 @@ table.agenda td:nth-child(2) { white-space: normal; width: 34%; }
 .pair td:last-child { font-weight: 500; }
 .card .pill { font-size: 11px; font-weight: 600; color: var(--slate); background: var(--oat-2); border-radius: 999px; padding: 2px 8px; vertical-align: middle; }
 @media print { .tab-panel.print-show { display: block !important; } }
+
+/* ---------- layers of business logic ---------- */
+.layers { margin: 20px 0 24px; }
+.layers .headline { color: var(--lava); font-weight: 600; margin: 0 0 14px; }
+.layers .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px 28px; align-items: stretch; }
+.layers .end { grid-column: 1; text-align: center; font-size: .86em; font-weight: 600; color: var(--slate); margin: 0; }
+.layers .tier { display: flex; justify-content: center; align-items: center; }
+.layers .bar { color: #fff; border-radius: 10px; padding: 10px 14px; text-align: center; line-height: 1.35; font-size: .9em; }
+.layers .bar strong { display: block; font-size: 1.02em; }
+.layers .bar.l1 { width: 58%; background: #F25C4A; }
+.layers .bar.l2 { width: 72%; background: #F2A43A; color: var(--navy); }
+.layers .bar.l3 { width: 86%; background: #2F6DAE; }
+.layers .bar.l4 { width: 100%; background: #3BA776; }
+.layers .note { background: var(--white); border: 1px solid var(--line); border-left: 4px solid; border-radius: 6px; padding: 10px 14px; font-size: .9em; line-height: 1.45; display: flex; align-items: center; }
+.layers .note.l1 { border-left-color: #F25C4A; } .layers .note.l2 { border-left-color: #F2A43A; }
+.layers .note.l3 { border-left-color: #2F6DAE; } .layers .note.l4 { border-left-color: #3BA776; }
+@media (max-width: 760px) { .layers .grid { grid-template-columns: 1fr; } .layers .bar { width: 100% !important; } }
+@media print { .layers .bar, .layers .note { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+.layers .note p { margin: 0; }

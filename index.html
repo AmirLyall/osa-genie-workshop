@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
@@ -193,6 +193,21 @@
   <h3>How the data team makes an agent smarter, and how you can help</h3>
   <p>A new agent only knows what's in the tables. The data team has several ways to teach it more. They don't know your work the way you do,
   so the most useful thing you can bring them is the knowledge behind each one.</p>
+  <div class="layers" role="figure" aria-label="Layers of business logic in a Genie Agent, from least to most reliable">
+    <p class="headline">Lower layers are more deterministic. Every piece of business logic should live as far down as possible.</p>
+    <div class="grid">
+      <p class="end">Last option, least reliable</p><div></div>
+      <div class="tier"><div class="bar l1"><strong>Text instructions</strong>Fast but optimistic</div></div>
+      <div class="note l1"><p><strong>Text instructions:</strong> formatting, scope and clarification prompts. Great for fast iteration and subjective changes, but open to interpretation, and they can be ignored if the context gets overloaded.</p></div>
+      <div class="tier"><div class="bar l2"><strong>SQL expressions</strong>Example-based pattern matching for reliable outcomes</div></div>
+      <div class="note l2"><p><strong>SQL expressions:</strong> Genie's strongest signal for writing queries. It learns from examples, which captures your team's expertise.</p></div>
+      <div class="tier"><div class="bar l3"><strong>Unity Catalog metadata</strong>Table and column descriptions, synonyms, table context</div></div>
+      <div class="note l3"><p><strong>Unity Catalog metadata:</strong> passive but important. It helps Genie pick the right tables and columns, and it helps everyone else who builds on Unity Catalog too.</p></div>
+      <div class="tier"><div class="bar l4"><strong>Metric views</strong>Enforced semantic layer: calculations, joins, governed metrics</div></div>
+      <div class="note l4"><p><strong>Metric views:</strong> enforced and deterministic. Calculations always run exactly as defined. You can add synonyms for KPIs, so Genie learns your business terms.</p></div>
+      <p class="end">Preferred, most reliable</p><div></div>
+    </div>
+  </div>
   <table class="toolbox">
     <thead><tr><th>What the data team can add</th><th>What it does</th><th>What you can tell them</th></tr></thead>
     <tbody>
@@ -356,6 +371,6 @@ Notes (terms Genie needs defined, data it would need):</pre></div>
 </main>
 </div>
 
-<script src="app.js"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
