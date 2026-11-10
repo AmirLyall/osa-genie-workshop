@@ -32,7 +32,7 @@
   <div class="cards three">
     <div class="card domain fin"><h3>Financial Audit</h3><p>Totals that tie out, reconciliations, full-population testing, and getting to the exceptions faster than a sample.</p></div>
     <div class="card domain perf"><h3>Performance Audit</h3><p>Trends over time, comparisons across agencies, and compliance rates that show whether a program is working.</p></div>
-    <div class="card domain rr"><h3>Rapid Response</h3><p>Fast fact-finding on short-notice requests: who, what, when and how much, with the evidence to back it up.</p></div>
+    <div class="card domain rr"><h3>Investigations</h3><p>Fact-finding on allegations and short-notice requests: who, what, when and how much, with the evidence to back it up.</p></div>
   </div>
   <div class="hero-ctas">
     <a class="btn" href="#start">Get ready (2 min)</a>
@@ -123,12 +123,12 @@
 <section id="questions">
   <h2>Today's questions</h2>
   <p>We've written the questions ahead of time so the hour goes to <em>using</em> Genie, not typing. Click <strong>Copy</strong> on any question and paste it into your agent.
-  Each tab looks at the same data through a different team's eyes. Notice how the questions spell out dates and definitions: your new agent only knows what's in the tables.</p>
-  <div class="tabs" data-tabs="questions" data-label="Your team:">
+  Each tab looks at the same data from a different audit topic, so pick whichever fits what you're working on. Notice how the questions spell out dates and definitions: your new agent only knows what's in the tables.</p>
+  <div class="tabs" data-tabs="questions" data-label="Topic:">
     <div class="tab-buttons">
       <button class="active" data-tab="q-fin">Financial Audit</button>
       <button data-tab="q-perf">Performance Audit</button>
-      <button data-tab="q-rr">Rapid Response</button>
+      <button data-tab="q-rr">Investigations</button>
     </div>
     <div class="tab-panel active" id="q-fin">
       <p class="q">What was total P-card spend by agency in fiscal year 2026?</p>
@@ -238,7 +238,7 @@
   <p>As you work through the steps below, try the same question in both modes and compare: how long it takes, how many queries Genie runs in <strong>Show code</strong>, and how much it explains. Here's an open question to try in Agent mode:</p>
   <p class="q">Review fiscal year 2026 P-card activity for agency DCH and summarize the top risks an auditor should test first, with a supporting table for each.</p>
   <ol class="steps" data-group="lab3">
-    <li><label><input type="checkbox" data-id="l3a"> Paste a question from <a href="#questions">your team's tab</a>.</label></li>
+    <li><label><input type="checkbox" data-id="l3a"> Paste a question from one of the <a href="#questions">topic tabs</a>.</label></li>
     <li><label><input type="checkbox" data-id="l3b"> Ask a <strong>follow-up</strong> that builds on the answer. Follow-ups stay in the same thread, so Genie remembers the context. Try one of these:</label>
       <p class="q">Only for agency DCH</p>
       <p class="q">Now split that by quarter</p></li>
@@ -324,7 +324,7 @@
   <p>Think of the questions your team gets asked. For each one, try it in Genie and jot down what happened using the template below.
   Copy it into an email, a document or Teams, and share it with the OSA Data Analytics team. It tells them what the next Genie Agent should be able to answer.</p>
   <div class="codeblock template"><pre>Question:
-Team (Financial Audit, Performance Audit, Rapid Response, other):
+Topic (Financial Audit, Performance Audit, Investigations, other):
 Who asks it:
 What Genie did (right answer / close, needed rewording / wrong answer / data not available):
 Notes (terms Genie needs defined, data it would need):</pre></div>
