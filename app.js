@@ -68,6 +68,13 @@
   });
   $("#print-btn").addEventListener("click", () => window.print());
 
+  /* ---------- clear progress ---------- */
+  $("#reset-btn").addEventListener("click", () => {
+    if (!confirm("Clear all your checkmarks and start the guide over?")) return;
+    Object.keys(localStorage).filter((k) => k.startsWith("osa-genie:")).forEach((k) => localStorage.removeItem(k));
+    location.reload();
+  });
+
   /* ---------- active nav ---------- */
   const links = $$(".sidebar a");
   const sections = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);

@@ -8,13 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
 <header class="topbar">
   <a class="brand" href="#welcome" style="text-decoration:none"><img src="databricks-logo.svg" alt="Databricks"><span class="divider"></span><span class="title">NC OSA · Genie Workshop</span><span class="pill">Lunch and learn</span></a>
   <div class="top-actions">
+  <button class="btn ghost sm" id="reset-btn" type="button" title="Clear your checkmarks and start the guide over">Clear progress</button>
   <button class="btn ghost sm" id="print-btn" type="button" title="Print this guide or save it as a PDF">Print / PDF</button>
   <div class="progress-wrap" title="Your progress is saved in this browser">
     <div class="progress"><div id="progress-bar"></div></div><span id="progress-label">0%</span>
@@ -262,11 +263,13 @@
 <section id="lab4" class="lab">
   <h2><span class="bullet b-green">4</span> Your files, schedules and customizing</h2>
   <p class="goal"><strong>Goal:</strong> bring your own spreadsheet in, have Genie run routine checks for you, and teach it how you work. <span class="time">12:35 · 15 min</span></p>
+  <div class="callout info"><strong>This section happens in Genie One.</strong> Uploads, schedules, memory and skills all live in Genie One, not inside your agent.
+  Switch back now: open Genie One from the <strong>app switcher</strong> in the upper right (or the tab you opened earlier), and click <strong>New chat</strong>.</div>
   <h3>Bring your own file</h3>
-  <p>You can add a <strong>CSV or Excel</strong> file to a chat and ask questions about it. Try it with our sample test workpaper.</p>
+  <p>You can add a <strong>CSV or Excel</strong> file to a Genie One chat and ask questions about it. Try it with our sample test workpaper.</p>
   <ol class="steps" data-group="lab4">
     <li><label><input type="checkbox" data-id="l4a"> Download <a href="osa_pcard_test_sample.csv" download><code>osa_pcard_test_sample.csv</code></a>: 60 sampled transactions with test results.</label></li>
-    <li><label><input type="checkbox" data-id="l4b"> In a chat, click the <strong>+</strong> in the message box, choose <strong>Add files</strong>, and pick the file. You can also drag it in.</label></li>
+    <li><label><input type="checkbox" data-id="l4b"> In your new Genie One chat, click the <strong>+</strong> in the message box, choose <strong>Add files</strong>, and pick the file. You can also drag it in.</label></li>
     <li><label><input type="checkbox" data-id="l4c"> With the file attached, ask about it:</label></li>
   </ol>
   <p class="q">Summarize the exceptions in this test sample by agency: missing receipts, missing approvals and undocumented business purpose.</p>
@@ -292,12 +295,20 @@
     <div class="card"><h3>Memory</h3><p>Tell Genie something once and it applies it in later chats. Try:</p>
       <p class="q">Remember: when I say FY, I mean the NC fiscal year, July 1 to June 30.</p>
       <p class="q">Remember that I prefer results sorted by dollar amount, largest first.</p></div>
-    <div class="card"><h3>Skills <span class="pill">Preview</span></h3><p>A skill is a short instruction file you upload to teach Genie a repeatable procedure, such as your team's steps for a split-purchase test.
-      It's in Preview, so it may not be turned on in your workspace yet.</p></div>
     <div class="card"><h3>Name your chats</h3><p>Give the chats you return to clear names in <strong>Past chats</strong>, so you can find them again, for example:</p>
       <p class="q">FY26 DRB P-card testing</p></div>
     <div class="card"><h3>Send feedback</h3><p>Mark a good answer <strong>Yes</strong>, or click <strong>Fix it</strong> when it's wrong. On an agent someone else manages, <strong>Request review</strong> flags the answer for them so they can see where it needs work.</p></div>
   </div>
+  <h3>Skills <span class="pill">Preview</span></h3>
+  <p>A skill teaches Genie a repeatable procedure, such as your team's steps for a test, so you don't have to explain it every time.
+  Skills are in Preview, so they may not be turned on in your workspace. If you see <strong>Customizations</strong> in the Genie One sidebar with a <strong>Skills</strong> page, try one of these:</p>
+  <ol class="steps" data-group="lab4d">
+    <li><label><input type="checkbox" data-id="l4g"> <strong>Ask Genie to create one.</strong> In a Genie One chat, paste:</label>
+      <p class="q">Create a skill called pcard-split-purchase-test. When I ask for a split-purchase test, use the osa_pcard_review tables to find purchases on the same card, at the same merchant, on the same day, where each purchase is under the card's single-purchase limit but the combined total is over it. Default to fiscal year 2026. Show a summary, a table sorted by combined total, a count by agency, and a note that these are possible splits to review, not confirmed violations.</p></li>
+    <li><label><input type="checkbox" data-id="l4h"> <strong>Or upload ours.</strong> Download <a href="skills/pcard-split-purchase-test/SKILL.md" download><code>SKILL.md</code></a>, put it in a folder named <code>pcard-split-purchase-test</code>, then go to <strong>Customizations</strong>, <strong>Skills</strong>, and click <strong>Upload skills</strong>.</label></li>
+    <li><label><input type="checkbox" data-id="l4i"> Use it: type <code>/</code> and the skill name in a chat, or just ask and Genie will pick it up when it fits:</label>
+      <p class="q">/pcard-split-purchase-test Run a split-purchase test for agency DRB.</p></li>
+  </ol>
 </section>
 
 <!-- ============================================================ LAB 5 -->
@@ -384,6 +395,6 @@ Notes (terms Genie needs defined, data it would need):</pre></div>
 </main>
 </div>
 
-<script src="app.js?v=2"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>
